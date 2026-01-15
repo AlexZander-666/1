@@ -51,7 +51,7 @@
 - `outputs/stage1_lstm_final/`（LSTM baseline）
 - `outputs/stage1_resnet_final/`（ResNet baseline）
 - `outputs/stage1_tcn_final/`（TCN baseline）
-- `outputs/lite_amsnet_sa01/`（`template/1.md` 引用的 Lite 模型权重示例）
+- `outputs/lite_amsnet_sa01/`（实验记录引用的 Lite 模型权重示例）
 
 > 说明：实验记录中还出现了 `outputs/phycl_net_main`、`outputs/mspa_faa_pdk_baseline`、`outputs/baseline_*` 等“逻辑目录名”。建议在公开仓库中提供一份 **Path Mapping 表**（见下文），将这些逻辑名映射到公开仓库的“论文命名目录”（并注明本地来源目录）。
 
@@ -71,7 +71,7 @@
 - 审稿人可直接下载单个 zip（或分卷）并用 SHA256 验证。
 
 **做法**
-- Git 仓库内追踪：代码 + `template/1.md` + `docs/` + `figures/` + 轻量结果 JSON/CSV/LOG。
+- Git 仓库内追踪：代码 + `docs/experiments/1.md` + `docs/` + `figures/` + 轻量结果 JSON/CSV/LOG。
 - 大体积：各实验目录的 `ckpt_best*.pth` 打包为 zip（必要时分卷），上传到 GitHub Release（例如 `paper-v1.0-artifacts`）。
 
 ### Strategy 2（备选）：Git LFS（不推荐作为默认）
@@ -84,7 +84,7 @@
 ```
 PhyCL-Net-data-availability/
   README.md
-  template/1.md
+  docs/experiments/1.md
   docs/experiments/1.md
   docs/REPRODUCIBILITY.md
   docs/REPRODUCIBILITY_MANIFEST.json
@@ -137,18 +137,18 @@ PhyCL-Net-data-availability/
 2. 在 `README.md` 增加 “Data Availability” 小节：包含 GitHub Repo URL 与 Release URL（待创建）。
 3. 生成 `manifests/ARTIFACT_MANIFEST.json`：列出每个实验目录、包含文件、seeds、folds（12 subjects）与文件校验信息（见 Task 4）。
 
-### Task 2: 生成并核对 “需要公开的文件清单”（以 `template/1.md` 为准）
+### Task 2: 生成并核对 “需要公开的文件清单”（以 `docs/experiments/1.md` 为准）
 **Create:** `manifests/PATH_MAPPING.md`
 
 **Steps:**
 1. 将上面的 Path Mapping 表写入 `manifests/PATH_MAPPING.md`。
-2. 对 `template/1.md` 中出现但当前缺失的文件（例如 `docs/figures/paper/*`、`docs/tables/*`），明确标注为：
+2. 对 `docs/experiments/1.md` 中出现但当前缺失的文件（例如 `docs/figures/paper/*`、`docs/tables/*`），明确标注为：
    - “未在仓库中生成/不作为公开归档的一部分”，或
    - “由 `code1/scripts/...` 生成（给出确切命令与输出路径）”。
 
 ### Task 3: 权重归档策略（只公开 best checkpoints）
 **Decision:**
-- 默认仅公开 `ckpt_best_seed*_loso_SA*.pth`（与 `template/1.md` 的引用一致）。
+- 默认仅公开 `ckpt_best_seed*_loso_SA*.pth`（与实验记录的引用一致）。
 - `ckpt_last*` 作为可选项：仅当你需要“严格逐 epoch 复现”或审稿人要求时再公开。
 
 ### Task 4: 打包权重到 GitHub Release（并生成 SHA256）
