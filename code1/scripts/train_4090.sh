@@ -24,7 +24,7 @@ NC='\033[0m' # No Color
 case "$1" in
     dryrun)
         echo -e "\n${GREEN}[MODE] Dry Run - Environment Validation${NC}\n"
-        python DMC_Net_experiments.py \
+        python phycl_net_experiments.py \
             --dataset dryrun \
             --model amsv2 \
             --batch-size 64 \
@@ -36,7 +36,7 @@ case "$1" in
     quick)
         echo -e "\n${GREEN}[MODE] Quick LOSO Test (5 folds, 2 seeds, 50 epochs)${NC}"
         echo -e "${YELLOW}Estimated time: 2-3 hours${NC}\n"
-        python DMC_Net_experiments.py \
+        python phycl_net_experiments.py \
             --dataset sisfall \
             --data-root ./data \
             --model amsv2 \
@@ -55,7 +55,7 @@ case "$1" in
     full)
         echo -e "\n${GREEN}[MODE] Full LOSO Experiment (23 folds, 5 seeds, 100 epochs)${NC}"
         echo -e "${YELLOW}Estimated time: 24-36 hours${NC}\n"
-        python DMC_Net_experiments.py \
+        python phycl_net_experiments.py \
             --dataset sisfall \
             --data-root ./data \
             --model amsv2 \
@@ -75,7 +75,7 @@ case "$1" in
         echo -e "\n${GREEN}[MODE] Full LOSO Experiment (Background Mode)${NC}"
         echo -e "${YELLOW}Running in background with nohup...${NC}\n"
         mkdir -p ./outputs/loso_full_4090
-        nohup python DMC_Net_experiments.py \
+        nohup python phycl_net_experiments.py \
             --dataset sisfall \
             --data-root ./data \
             --model amsv2 \
@@ -114,13 +114,13 @@ case "$1" in
             echo -e "${YELLOW}Running: $name...${NC}"
 
             if [[ "$name" == "no_tfcl" ]]; then
-                python DMC_Net_experiments.py \
+                python phycl_net_experiments.py \
                     --dataset sisfall --data-root ./data --model amsv2 \
                     --eval-mode loso --seeds 42 123 456 --epochs 100 \
                     --batch-size 64 --amp \
                     --out-dir ./outputs/ablation/$name
             else
-                python DMC_Net_experiments.py \
+                python phycl_net_experiments.py \
                     --dataset sisfall --data-root ./data --model amsv2 \
                     --eval-mode loso --seeds 42 123 456 --epochs 100 \
                     --batch-size 64 --amp --use-tfcl \
@@ -145,7 +145,7 @@ case "$1" in
         for model in "${!models[@]}"; do
             bs=${models[$model]}
             echo -e "${YELLOW}Running: $model (batch_size=$bs)...${NC}"
-            python DMC_Net_experiments.py \
+            python phycl_net_experiments.py \
                 --dataset sisfall --data-root ./data --model $model \
                 --eval-mode loso --seeds 42 123 456 --epochs 100 \
                 --batch-size $bs --amp \
@@ -160,7 +160,7 @@ case "$1" in
 
         for model in amsv2 lstm resnet tcn transformer inceptiontime; do
             echo -e "${YELLOW}Profiling: $model${NC}"
-            python DMC_Net_experiments.py \
+            python phycl_net_experiments.py \
                 --dataset dryrun --model $model \
                 --profile --epochs 1 --batch-size 1
             echo ""

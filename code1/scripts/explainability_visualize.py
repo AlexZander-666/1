@@ -17,9 +17,9 @@ from matplotlib.colors import LinearSegmentedColormap
 
 # Allow local imports
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(REPO_ROOT / "code"))
+sys.path.insert(0, str(REPO_ROOT / "code1"))
 
-from DMC_Net_experiments import (  # noqa: E402
+from phycl_net_experiments import (  # noqa: E402
     SisFallDataset,
     _resolve_sisfall_root,
     parse_ablation_config,

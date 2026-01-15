@@ -36,7 +36,7 @@ def build_train_cmd(
 ) -> list[str]:
     cmd = [
         sys.executable,
-        "code/DMC_Net_experiments.py",
+        "code1/phycl_net_experiments.py",
         "--dataset",
         args.dataset,
         "--data-root",
@@ -99,7 +99,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--extra-args",
         nargs=argparse.REMAINDER,
         default=[],
-        help="Extra args forwarded to DMC_Net_experiments.py (prefix with --).",
+        help="Extra args forwarded to phycl_net_experiments.py (prefix with --).",
     )
     return parser.parse_args(argv)
 

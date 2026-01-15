@@ -31,14 +31,18 @@ try:
 except Exception:
     sns = None
 
-# Allow importing project modules (LiteAMSNet + SisFallDataset live in DMC_Net_experiments.py)
+# Allow importing project modules (LiteAMSNet + SisFallDataset live in the training entry module)
 import sys
 
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from DMC_Net_experiments import LiteAMSNet, SisFallDataset, _resolve_sisfall_root  # type: ignore  # noqa: E402
+from phycl_net_experiments import (  # type: ignore  # noqa: E402
+    LiteAMSNet,
+    SisFallDataset,
+    _resolve_sisfall_root,
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -162,7 +166,7 @@ def load_model(
     state = torch.load(ckpt_path, map_location=device)
     state_dict = None
     if isinstance(state, dict):
-        # Handle multiple checkpoint formats from DMC_Net_experiments.py
+        # Handle multiple checkpoint formats from the training entry module
         for key in ("model_state", "model_state_dict", "state_dict"):
             if key in state:
                 state_dict = state[key]

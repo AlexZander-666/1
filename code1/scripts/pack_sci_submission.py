@@ -50,7 +50,7 @@ CORE_SOURCE_FILES = [
     "losses/__init__.py",
     "losses/tfcl.py",
     "losses/contrastive.py",
-    "DMC_Net_experiments.py",
+    "phycl_net_experiments.py",
     "requirements.txt",
 ]
 
@@ -420,7 +420,7 @@ def pack_submission(output_dir: Path, include_checkpoints: bool = False):
             "evaluation": "LOSO (Leave-One-Subject-Out, 12 folds)",
         },
         "training_command": (
-            "python DMC_Net_experiments.py --dataset sisfall --data-root ./data "
+            "python phycl_net_experiments.py --dataset sisfall --data-root ./data "
             "--model amsv2 --eval-mode loso --seeds 42 123 --epochs 100 "
             "--batch-size 32 --lr 0.001 --amp --weighted-loss --use-tfcl "
             "--out-dir ./outputs/stage1_amsv2_final"
@@ -444,7 +444,7 @@ def pack_submission(output_dir: Path, include_checkpoints: bool = False):
 ### 代码 (code/)
 - [x] 核心模型代码 (models/ams_net_v2.py)
 - [x] 模块实现 (DKS, FAA, MSPA, TFCL)
-- [x] 训练脚本 (DMC_Net_experiments.py)
+- [x] 训练脚本 (phycl_net_experiments.py)
 - [x] 依赖清单 (requirements.txt)
 
 ### 实验结果 (results/)
@@ -547,7 +547,7 @@ submission_package/
 ├── code/                      # Source code
 │   ├── models/               # Model architecture
 │   ├── losses/               # Loss functions
-│   └── DMC_Net_experiments.py # Training script
+│   └── phycl_net_experiments.py # Training script
 ├── results/                   # Experimental results
 │   ├── stage1_amsv2_final/   # Main model results
 │   ├── stage1_*_final/       # Baseline results
@@ -578,7 +578,7 @@ submission_package/
 pip install -r code/requirements.txt
 
 # Train AMSNetV2
-python code/DMC_Net_experiments.py --dataset sisfall --data-root ./data \\
+python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data \\
     --model amsv2 --eval-mode loso --seeds 42 123 --epochs 100 \\
     --batch-size 32 --lr 0.001 --amp --weighted-loss --use-tfcl
 ```
