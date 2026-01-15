@@ -17,14 +17,15 @@ Usage:
     python code1/phycl_net_experiments.py --dataset dryrun --profile --epochs 2 --batch-size 4
 
     # 真实实验 (SisFall LOSO) - 主模型 PhyCL-Net（time-domain，强制 no-MSPA）
-    python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 100 --weighted-loss --amp
+    python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 50 --batch-size 256 --lr 0.004 --warmup-epochs 10 --weighted-loss --amp --use-tfcl
 
     # 真实实验 - 断点续训
     python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --resume ./outputs/ckpt_last_seed42.pth
 
 Model naming notes:
     - --model phycl_net: 论文中的 PhyCL-Net（no-MSPA；`mspa=False` 会被强制写入 ablation 配置）
-    - --model amsv2: 通用 AMSNetV2（可通过 `--ablation mspa:True/False` 切换频谱分支）
+    - --model mspa_faa_pdk: 论文中的 MSPA-FAA-PDK（谱域 baseline；强制 `mspa=True`）
+    - --model amsv2: 兼容旧日志的内部名称（建议改用 `phycl_net` / `mspa_faa_pdk`）
     - --model dmc: DMCNet 基线（默认包含频谱/频域分支；同样可用 `--ablation mspa:False` 关闭）
 """
 
@@ -428,6 +429,13 @@ def load_checkpoint_for_resume(ckpt_path, model, optimizer=None, scheduler=None,
 # -------------------------- Deployment Profiling --------------------------
 
 def profile_model_efficiency(model, input_size=(1, 3, 512), device=torch.device('cpu')):
+    prev_deploy = getattr(model, "deploy", None)
+    if hasattr(model, "set_deploy"):
+        try:
+            model.set_deploy(True)
+        except Exception:
+            pass
+
     model.eval()
     model.to(device)
     x = torch.randn(input_size).to(device)
@@ -472,6 +480,11 @@ def profile_model_efficiency(model, input_size=(1, 3, 512), device=torch.device(
     logging.info(f"  - FLOPs: {flops_str}")
     logging.info(f"  - Latency: {avg_latency_ms:.3f} ms")
     logging.info("-" * 30)
+    if prev_deploy is not None and hasattr(model, "set_deploy"):
+        try:
+            model.set_deploy(prev_deploy)
+        except Exception:
+            pass
     return {'params_M': params/1e6, 'flops_G': flops/1e9 if flops else None, 'latency_ms': avg_latency_ms}
 
 # -------------------------- AMS-Net Modules --------------------------
@@ -2310,6 +2323,11 @@ def run_one_experiment(config, seed, resume_path=None):
         if config.get('model') == 'phycl_net':
             ablation_cfg = dict(ablation_cfg)
             ablation_cfg['mspa'] = False
+        if config.get('model') == 'mspa_faa_pdk':
+            ablation_cfg = dict(ablation_cfg)
+            ablation_cfg['mspa'] = True
+            ablation_cfg['dks'] = True
+            ablation_cfg['faa'] = True
         if config['model'] == 'dmc':
             model = DMCNet(
                 in_channels=C,
@@ -2331,7 +2349,7 @@ def run_one_experiment(config, seed, resume_path=None):
             model = LSTMClassifier(in_channels=C, num_classes=config['num_classes'])
         elif config['model'] == 'resnet':
             model = ResNet1D(in_channels=C, num_classes=config['num_classes'])
-        elif config['model'] in ('amsv2', 'phycl_net'):
+        elif config['model'] in ('amsv2', 'phycl_net', 'mspa_faa_pdk'):
             model = AMSNetV2(
                 in_channels=C,
                 num_classes=config['num_classes'],
@@ -2401,7 +2419,7 @@ def run_one_experiment(config, seed, resume_path=None):
             logging.info(f"[{split_tag}] Using weighted CrossEntropyLoss based on training data balance.")
             class_weights = compute_class_weights(train_ds, num_classes=config['num_classes']).to(device)
 
-        if config['model'] in ('amsv2', 'phycl_net'):
+        if config['model'] in ('amsv2', 'phycl_net', 'mspa_faa_pdk'):
             use_tfcl_flag = config.get('use_tfcl', False) and ablation_cfg.get('tfcl', True)
             beta_val = config.get('loss_beta', 0.01) if ablation_cfg.get('center', True) else 0.0
             use_uw = config.get('uncertainty_weighting', False)
@@ -2751,7 +2769,7 @@ def main():
     p.add_argument('--dataset', default='dryrun', choices=['dryrun', 'sisfall', 'mobiact', 'unimib', 'kfall'])
     p.add_argument('--data-root', default='./data', help="Root path for dataset")
     p.add_argument('--out-dir', default='./outputs')
-    p.add_argument('--model', default='dmc', choices=['dmc', 'lstm', 'resnet', 'phycl_net', 'amsv2', 'liteams', 'tcn', 'transformer', 'inceptiontime', 'rocket', 'tinyhar', 'deeplstm'])
+    p.add_argument('--model', default='dmc', choices=['dmc', 'lstm', 'resnet', 'phycl_net', 'mspa_faa_pdk', 'amsv2', 'liteams', 'tcn', 'transformer', 'inceptiontime', 'rocket', 'tinyhar', 'deeplstm'])
     p.add_argument('--epochs', type=int, default=10)
     p.add_argument('--batch-size', type=int, default=32)
     p.add_argument('--lr', type=float, default=1e-3)

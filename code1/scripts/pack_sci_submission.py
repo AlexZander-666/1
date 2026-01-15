@@ -56,30 +56,25 @@ CORE_SOURCE_FILES = [
 
 # Key experiment result directories
 KEY_EXPERIMENTS = [
-    "stage1_amsv2_final",
+    "mspa_faa_pdk_baseline",
     "stage1_lstm_final",
     "stage1_resnet_final",
     "stage1_tcn_final",
     "stage1_transformer_final",
     "stage1_inceptiontime_final",
-    "ablation_no_mspa",
+    "phycl_net",
     "ablation_no_tfcl",
     "ablation_no_dks",
     "ablation_no_faa",
     "ablation_time_only",
     "ablation_freq_only",
-    "rerun_ablation_no_mspa_final",
-    "rerun_ablation_no_tfcl_final",
 ]
 
 # Result files to collect from each experiment
 RESULT_FILES = [
     "summary_results.json",
     "experiment_config.yaml",
-    "loso_results_seed42.json",
-    "loso_results_seed123.json",
-    "split_stats_seed42.json",
-    "split_stats_seed123.json",
+    "experiment.log",
 ]
 
 # Figure directories
@@ -315,6 +310,12 @@ def pack_submission(output_dir: Path, include_checkpoints: bool = False):
             if src.exists():
                 copy_file_safe(src, exp_out / fname)
 
+        # Copy per-seed results/splits
+        for json_file in exp_dir.glob("loso_results_seed*.json"):
+            copy_file_safe(json_file, exp_out / json_file.name)
+        for json_file in exp_dir.glob("split_stats_seed*.json"):
+            copy_file_safe(json_file, exp_out / json_file.name)
+
         # Copy error analysis CSVs
         for csv_file in exp_dir.glob("errors_*.csv"):
             copy_file_safe(csv_file, exp_out / csv_file.name)
@@ -324,11 +325,15 @@ def pack_submission(output_dir: Path, include_checkpoints: bool = False):
         if summary:
             metrics = extract_key_metrics(summary)
             if metrics:
-                # Create readable name
-                display_name = exp_name.replace('stage1_', '').replace('_final', '')
-                display_name = display_name.replace('ablation_', 'Ablation: ')
-                display_name = display_name.replace('rerun_', '')
-                display_name = display_name.upper() if 'amsv2' in display_name.lower() else display_name.title()
+                # Create readable name (paper-facing)
+                if exp_name == "phycl_net":
+                    display_name = "PhyCL-Net"
+                elif exp_name == "mspa_faa_pdk_baseline":
+                    display_name = "MSPA-FAA-PDK"
+                else:
+                    display_name = exp_name.replace('stage1_', '').replace('_final', '')
+                    display_name = display_name.replace('ablation_', 'Ablation: ')
+                    display_name = display_name.title()
                 all_metrics[display_name] = metrics
 
         # Optionally copy checkpoints
@@ -405,29 +410,30 @@ def pack_submission(output_dir: Path, include_checkpoints: bool = False):
     logging.info("=" * 50)
     logging.info("Step 6: Generating reproducibility manifest...")
 
-    manifest = {
-        "project": "AMSNetV2 - Fall Detection on SisFall Dataset",
-        "created_at": datetime.now().isoformat(),
-        "git": get_git_info(),
-        "environment": get_python_env(),
-        "dataset": {
-            "name": "SisFall",
-            "url": "http://sistemic.udea.edu.co/en/research/projects/english-falls/",
-            "subjects": 23,
-            "sampling_rate_hz": 50,
-            "window_size": 512,
-            "stride": 256,
-            "evaluation": "LOSO (Leave-One-Subject-Out, 12 folds)",
-        },
-        "training_command": (
-            "python phycl_net_experiments.py --dataset sisfall --data-root ./data "
-            "--model amsv2 --eval-mode loso --seeds 42 123 --epochs 100 "
-            "--batch-size 32 --lr 0.001 --amp --weighted-loss --use-tfcl "
-            "--out-dir ./outputs/stage1_amsv2_final"
-        ),
-        "seeds": [42, 123],
-        "key_results": all_metrics,
-    }
+        manifest = {
+            "project": "PhyCL-Net - Wearable Fall Detection",
+            "created_at": datetime.now().isoformat(),
+            "git": get_git_info(),
+            "environment": get_python_env(),
+            "dataset": {
+                "name": "SisFall",
+                "url": "http://sistemic.udea.edu.co/en/research/projects/english-falls/",
+                "subjects": 23,
+                "sampling_rate_hz": 50,
+                "window_size": 512,
+                "stride": 256,
+                "evaluation": "LOSO (Leave-One-Subject-Out, 12 folds)",
+            },
+            "training_command": (
+                "python phycl_net_experiments.py --dataset sisfall --data-root ./data "
+                "--model phycl_net --eval-mode loso --seeds 42 123 456 789 1024 "
+                "--epochs 50 --batch-size 256 --lr 0.004 --warmup-epochs 10 "
+                "--amp --weighted-loss --use-tfcl "
+                "--out-dir ./outputs/phycl_net"
+            ),
+            "seeds": [42, 123, 456, 789, 1024],
+            "key_results": all_metrics,
+        }
 
     with open(output_dir / "REPRODUCIBILITY_MANIFEST.json", 'w', encoding='utf-8') as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
@@ -447,8 +453,8 @@ def pack_submission(output_dir: Path, include_checkpoints: bool = False):
 - [x] 训练脚本 (phycl_net_experiments.py)
 - [x] 依赖清单 (requirements.txt)
 
-### 实验结果 (results/)
-- [x] AMSNetV2 完整结果
+  ### 实验结果 (results/)
+  - [x] PhyCL-Net 完整结果
 - [x] 基线模型对比结果 (LSTM, ResNet, TCN, Transformer, InceptionTime)
 - [x] 消融实验结果
 - [x] 汇总对比表 (LaTeX + CSV)
@@ -480,9 +486,9 @@ def pack_submission(output_dir: Path, include_checkpoints: bool = False):
 - [ ] 讨论 (局限性、未来工作)
 - [ ] 结论
 
-### 统计严谨性
-- [x] LOSO 交叉验证 (12折)
-- [x] 多种子实验 (42, 123)
+  ### 统计严谨性
+  - [x] LOSO 交叉验证 (12折)
+  - [x] 多种子实验 (42, 123, 456, 789, 1024)
 - [x] 95% 置信区间
 - [ ] 配对 t 检验 (vs 基线)
 - [ ] Bonferroni 校正
@@ -503,12 +509,13 @@ def pack_submission(output_dir: Path, include_checkpoints: bool = False):
 
 ## 📊 核心结果摘要
 
-| 模型 | Accuracy | Macro F1 | Sensitivity | Specificity |
-|------|----------|----------|-------------|-------------|
-| AMSNetV2 (Ours) | 98.04% | 97.96% | 97.67% | 98.30% |
-| InceptionTime | 97.91% | 97.85% | 97.82% | 97.97% |
-| TCN | 97.13% | 97.04% | 96.43% | 97.63% |
-| Transformer | 95.48% | 95.34% | 94.71% | 96.02% |
+  | 模型 | Accuracy | Macro F1 | Sensitivity | Specificity |
+  |------|----------|----------|-------------|-------------|
+  | PhyCL-Net (Ours) | 98.21% | 98.16% | 97.93% | 98.41% |
+  | MSPA-FAA-PDK (Baseline) | 98.04% | 97.98% | 97.67% | 98.30% |
+  | InceptionTime | 97.91% | 97.85% | 97.82% | 97.97% |
+  | TCN | 97.13% | 97.04% | 96.43% | 97.63% |
+  | Transformer | 95.48% | 95.34% | 94.71% | 96.02% |
 | ResNet | 95.13% | 94.98% | 94.41% | 95.64% |
 | LSTM | 95.02% | 94.86% | 94.35% | 95.50% |
 
@@ -536,9 +543,9 @@ Git Commit: {commit}
     logging.info("Generated: SUBMISSION_CHECKLIST.md")
 
     # ==================== 8. Create README ====================
-    readme = f"""# AMSNetV2 - SCI Submission Package
+    readme = f"""# PhyCL-Net - SCI Submission Package
 
-This package contains all materials for submitting the AMSNetV2 fall detection paper to SCI Q4 journals.
+This package contains all materials for submitting the PhyCL-Net fall detection paper.
 
 ## Package Structure
 
@@ -549,7 +556,8 @@ submission_package/
 │   ├── losses/               # Loss functions
 │   └── phycl_net_experiments.py # Training script
 ├── results/                   # Experimental results
-│   ├── stage1_amsv2_final/   # Main model results
+│   ├── phycl_net/            # PhyCL-Net (ours)
+│   ├── mspa_faa_pdk_baseline/# MSPA-FAA-PDK (spectral baseline)
 │   ├── stage1_*_final/       # Baseline results
 │   ├── ablation_*/           # Ablation studies
 │   └── comparison_table.*    # Summary tables
@@ -564,12 +572,12 @@ submission_package/
 ## Key Results
 
 - **Dataset**: SisFall (23 subjects, LOSO validation)
-- **AMSNetV2 Performance**:
-  - Accuracy: 98.04%
-  - Macro F1: 97.96%
-  - Sensitivity: 97.67%
-  - Specificity: 98.30%
-  - Parameters: 1.65M
+- **PhyCL-Net (ours)**:
+  - Accuracy: 98.21%
+  - Macro F1: 98.16%
+  - Sensitivity: 97.93%
+  - Specificity: 98.41%
+  - Parameters: 1.049M
 
 ## Reproducibility
 
@@ -577,10 +585,10 @@ submission_package/
 # Install dependencies
 pip install -r code/requirements.txt
 
-# Train AMSNetV2
-python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data \\
-    --model amsv2 --eval-mode loso --seeds 42 123 --epochs 100 \\
-    --batch-size 32 --lr 0.001 --amp --weighted-loss --use-tfcl
+  # Train PhyCL-Net (paper setting)
+  python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data \\
+      --model phycl_net --eval-mode loso --seeds 42 123 456 789 1024 --epochs 50 \\
+      --batch-size 256 --lr 0.004 --warmup-epochs 10 --amp --weighted-loss --use-tfcl
 ```
 
 ## Contact

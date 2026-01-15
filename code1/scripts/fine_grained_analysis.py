@@ -9,7 +9,7 @@ This script generates:
 3. Age stratification analysis with independent t-test (SA: Young vs SE: Elderly)
 
 Usage:
-    python code/scripts/fine_grained_analysis.py --output-dir outputs/stage1_amsv2_final --figure-dir figures/fine_grained
+    python code1/scripts/fine_grained_analysis.py --output-dir outputs/phycl_net --figure-dir figures/fine_grained
 """
 
 import os
@@ -602,7 +602,7 @@ def print_per_class_metrics_table(metrics_df: pd.DataFrame):
 
 def main():
     parser = argparse.ArgumentParser(description='Fine-grained classification analysis for SisFall')
-    parser.add_argument('--output-dir', type=str, default='outputs/stage1_amsv2_final',
+    parser.add_argument('--output-dir', type=str, default='outputs/phycl_net',
                        help='Directory containing LOSO results')
     parser.add_argument('--data-root', type=str, default='./data',
                        help='Root directory of datasets')

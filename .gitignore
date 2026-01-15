@@ -41,9 +41,9 @@ downloads/
 *.pth
 *.ckpt
 
-# Keep manuscript figure sources tracked
-!paper/arXiv/figures/
-!paper/arXiv/figures/**
+# Keep manuscript figure sources tracked (paper sources may vendor figures)
+!paper/jec/figures/
+!paper/jec/figures/**
 
 # IDE
 .idea/
@@ -72,20 +72,18 @@ nul
 .ipynb_checkpoints/
 
 # PDF outputs (keep source .tex)
-paper/arXiv/*.pdf
-!paper/arXiv/template.pdf
-!paper/arXiv/orcid.pdf
+paper/jec/*.pdf
 
 # LaTeX build artifacts
-paper/arXiv/*.aux
-paper/arXiv/*.log
-paper/arXiv/*.out
-paper/arXiv/*.bbl
-paper/arXiv/*.blg
-paper/arXiv/*.toc
-paper/arXiv/*.synctex.gz
-paper/arXiv/*.fls
-paper/arXiv/*.fdb_latexmk
+paper/jec/*.aux
+paper/jec/*.log
+paper/jec/*.out
+paper/jec/*.bbl
+paper/jec/*.blg
+paper/jec/*.toc
+paper/jec/*.synctex.gz
+paper/jec/*.fls
+paper/jec/*.fdb_latexmk
 
 # Local paper templates (not for GitHub)
 template/

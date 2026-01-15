@@ -1,10 +1,10 @@
 #!/bin/bash
 # ============================================
-# RTX 4090 极致训练脚本 - AMSNetV2
+# RTX 4090 训练脚本 - PhyCL-Net / MSPA-FAA-PDK
 # ============================================
 
 echo "==========================================="
-echo "RTX 4090 AMSNetV2 Training Script"
+echo "RTX 4090 PhyCL-Net Training Script"
 echo "==========================================="
 
 # 设置CUDA优化
@@ -26,7 +26,7 @@ case "$1" in
         echo -e "\n${GREEN}[MODE] Dry Run - Environment Validation${NC}\n"
         python phycl_net_experiments.py \
             --dataset dryrun \
-            --model amsv2 \
+            --model phycl_net \
             --batch-size 64 \
             --epochs 2 \
             --amp \
@@ -39,94 +39,101 @@ case "$1" in
         python phycl_net_experiments.py \
             --dataset sisfall \
             --data-root ./data \
-            --model amsv2 \
+            --model phycl_net \
             --eval-mode loso \
             --loso-max-folds 5 \
             --seeds 42 123 \
             --epochs 50 \
-            --batch-size 64 \
-            --lr 1e-3 \
+            --batch-size 256 \
+            --lr 0.004 \
+            --warmup-epochs 10 \
             --weighted-loss \
             --amp \
             --use-tfcl \
-            --out-dir ./outputs/loso_quick_test
+            --out-dir ./outputs/phycl_net_quick_test
         ;;
 
     full)
-        echo -e "\n${GREEN}[MODE] Full LOSO Experiment (23 folds, 5 seeds, 100 epochs)${NC}"
-        echo -e "${YELLOW}Estimated time: 24-36 hours${NC}\n"
+        echo -e "\n${GREEN}[MODE] Full LOSO Experiment (12 folds, 5 seeds, 50 epochs)${NC}"
+        echo -e "${YELLOW}Estimated time: depends on GPU/IO${NC}\n"
         python phycl_net_experiments.py \
             --dataset sisfall \
             --data-root ./data \
-            --model amsv2 \
+            --model phycl_net \
             --eval-mode loso \
             --seeds 42 123 456 789 1024 \
-            --epochs 100 \
-            --batch-size 64 \
-            --lr 1e-3 \
+            --epochs 50 \
+            --batch-size 256 \
+            --lr 0.004 \
+            --warmup-epochs 10 \
             --weight-decay 1e-4 \
             --weighted-loss \
             --amp \
             --use-tfcl \
-            --out-dir ./outputs/loso_full_4090
+            --out-dir ./outputs/phycl_net
         ;;
 
     full-bg)
         echo -e "\n${GREEN}[MODE] Full LOSO Experiment (Background Mode)${NC}"
         echo -e "${YELLOW}Running in background with nohup...${NC}\n"
-        mkdir -p ./outputs/loso_full_4090
+        mkdir -p ./outputs/phycl_net
         nohup python phycl_net_experiments.py \
             --dataset sisfall \
             --data-root ./data \
-            --model amsv2 \
+            --model phycl_net \
             --eval-mode loso \
             --seeds 42 123 456 789 1024 \
-            --epochs 100 \
-            --batch-size 64 \
-            --lr 1e-3 \
+            --epochs 50 \
+            --batch-size 256 \
+            --lr 0.004 \
+            --warmup-epochs 10 \
             --weight-decay 1e-4 \
             --weighted-loss \
             --amp \
             --use-tfcl \
-            --out-dir ./outputs/loso_full_4090 \
-            > ./outputs/loso_full_4090/train.log 2>&1 &
+            --out-dir ./outputs/phycl_net \
+            > ./outputs/phycl_net/train.log 2>&1 &
         echo -e "${GREEN}Training started in background. PID: $!${NC}"
-        echo "Monitor with: tail -f ./outputs/loso_full_4090/train.log"
+        echo "Monitor with: tail -f ./outputs/phycl_net/train.log"
         ;;
 
     ablation)
-        echo -e "\n${GREEN}[MODE] Ablation Study (7 configurations)${NC}\n"
+        echo -e "\n${GREEN}[MODE] Ablation Study (paper-facing)${NC}\n"
 
-        configs=(
-            "full::"
-            "no_dks:--ablation dks=False"
-            "no_mspa:--ablation mspa=False"
-            "no_faa:--ablation faa=False"
-            "no_tfcl:"
-            "time_only:--ablation time_only"
-            "freq_only:--ablation freq_only"
-        )
+        echo -e "${YELLOW}Running: PhyCL-Net (ours)...${NC}"
+        python phycl_net_experiments.py \
+            --dataset sisfall --data-root ./data --model phycl_net \
+            --eval-mode loso --seeds 42 123 456 789 1024 --epochs 50 \
+            --batch-size 256 --lr 0.004 --warmup-epochs 10 --amp --weighted-loss --use-tfcl \
+            --out-dir ./outputs/phycl_net
 
-        for config in "${configs[@]}"; do
-            name="${config%%:*}"
-            args="${config#*:}"
+        echo -e "${YELLOW}Running: MSPA-FAA-PDK (spectral baseline)...${NC}"
+        python phycl_net_experiments.py \
+            --dataset sisfall --data-root ./data --model mspa_faa_pdk \
+            --eval-mode loso --seeds 42 123 --epochs 50 \
+            --batch-size 256 --lr 0.004 --warmup-epochs 10 --amp --weighted-loss --use-tfcl \
+            --out-dir ./outputs/mspa_faa_pdk_baseline
 
-            echo -e "${YELLOW}Running: $name...${NC}"
+        echo -e "${YELLOW}Running: w/o DKS (PhyCL-Net)...${NC}"
+        python phycl_net_experiments.py \
+            --dataset sisfall --data-root ./data --model phycl_net \
+            --eval-mode loso --seeds 42 123 --epochs 50 \
+            --batch-size 256 --lr 0.004 --warmup-epochs 10 --amp --weighted-loss --use-tfcl \
+            --ablation dks:False --out-dir ./outputs/ablation_no_dks
 
-            if [[ "$name" == "no_tfcl" ]]; then
-                python phycl_net_experiments.py \
-                    --dataset sisfall --data-root ./data --model amsv2 \
-                    --eval-mode loso --seeds 42 123 456 --epochs 100 \
-                    --batch-size 64 --amp \
-                    --out-dir ./outputs/ablation/$name
-            else
-                python phycl_net_experiments.py \
-                    --dataset sisfall --data-root ./data --model amsv2 \
-                    --eval-mode loso --seeds 42 123 456 --epochs 100 \
-                    --batch-size 64 --amp --use-tfcl \
-                    $args --out-dir ./outputs/ablation/$name
-            fi
-        done
+        echo -e "${YELLOW}Running: w/o FAA (PhyCL-Net)...${NC}"
+        python phycl_net_experiments.py \
+            --dataset sisfall --data-root ./data --model phycl_net \
+            --eval-mode loso --seeds 42 123 --epochs 50 \
+            --batch-size 256 --lr 0.004 --warmup-epochs 10 --amp --weighted-loss --use-tfcl \
+            --ablation faa:False --out-dir ./outputs/ablation_no_faa
+
+        echo -e "${YELLOW}Running: w/o TFCL (MSPA-FAA-PDK)...${NC}"
+        python phycl_net_experiments.py \
+            --dataset sisfall --data-root ./data --model mspa_faa_pdk \
+            --eval-mode loso --seeds 42 123 --epochs 50 \
+            --batch-size 256 --lr 0.004 --warmup-epochs 10 --amp --weighted-loss \
+            --ablation tfcl:False --out-dir ./outputs/ablation_no_tfcl
 
         echo -e "${GREEN}Ablation study completed!${NC}"
         ;;
@@ -158,7 +165,7 @@ case "$1" in
     profile)
         echo -e "\n${GREEN}[MODE] Efficiency Profiling${NC}\n"
 
-        for model in amsv2 lstm resnet tcn transformer inceptiontime; do
+        for model in phycl_net mspa_faa_pdk lstm resnet tcn transformer inceptiontime; do
             echo -e "${YELLOW}Profiling: $model${NC}"
             python phycl_net_experiments.py \
                 --dataset dryrun --model $model \

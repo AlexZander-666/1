@@ -1,6 +1,8 @@
 import math
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
+import math
+
 import torch
 import torch.nn as nn
 from .modules.dks import DynamicKernelBlock
@@ -331,6 +333,8 @@ class AMSNetV2(nn.Module):
 
         self.pool = nn.AdaptiveAvgPool1d(1)
         self.classifier = nn.Linear(high_channels, num_classes)
+        # Training-only auxiliary heads can be disabled during deployment.
+        self.deploy: bool = False
         # Per-stage projection heads for hierarchical TF contrastive
         stage_channels = (
             [stem_channels] * len(self.stage1)
@@ -351,7 +355,19 @@ class AMSNetV2(nn.Module):
         )
         self.apply(init_weights)
 
-    def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    def set_deploy(self, deploy: bool = True) -> "AMSNetV2":
+        """
+        Toggle deployment mode.
+
+        When enabled, the model returns logits only and skips building auxiliary
+        projection embeddings.
+        """
+        self.deploy = bool(deploy)
+        return self
+
+    def forward(
+        self, x: torch.Tensor
+    ) -> torch.Tensor | Tuple[torch.Tensor, List[torch.Tensor], List[torch.Tensor]]:
         x = self.stem(x)
 
         t_feats: List[torch.Tensor] = []
@@ -379,7 +395,10 @@ class AMSNetV2(nn.Module):
             proj_idx += 1
 
         logits = self.classifier(self.pool(x).squeeze(-1))
-        # Build hierarchical embeddings
+        if self.deploy:
+            return logits
+
+        # Build hierarchical embeddings (training-only)
         z_time_list: List[torch.Tensor] = []
         z_freq_list: List[torch.Tensor] = []
         for idx, (t, f) in enumerate(zip(t_feats, f_feats)):

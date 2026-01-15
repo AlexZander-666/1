@@ -1,8 +1,6 @@
 # GitHub Data Availability Execution Plan (PhyCL-Net / `docs/experiments/1.md`)
 
-> **For Claude:** REQUIRED SUB-SKILL: Use `superpowers:executing-plans` to implement this plan task-by-task.
-
-**Goal:** 将实验记录 `docs/experiments/1.md`（原 `template/1.md`）中涉及的实验结果、图表、复现脚本与训练得到的模型权重（LOSO 各折 best checkpoints）整理为一个可公开、可核验、可复现的 GitHub 归档，用于期刊 Data Availability Statement。
+**Goal:** 将实验记录 `docs/experiments/1.md`（由 `template/1.md` 迁移而来，`template/` 已从 GitHub 移除）中涉及的实验结果、图表、复现脚本与训练得到的模型权重（LOSO 各折 best checkpoints）整理为一个可公开、可核验、可复现的 GitHub 归档，用于期刊 Data Availability Statement。
 
 **Architecture:** 采用“代码与轻量结果进 Git 仓库 + 大体积权重走 GitHub Release 资产（zip 分卷）”的方式，规避 GitHub 单文件 100MB 限制与 Git LFS 配额风险，同时保留可复现所需的每折权重与逐折结果 JSON/CSV。
 
@@ -14,11 +12,21 @@
 
 ### A. 论文数据汇总/口径文件（必须）
 - `docs/experiments/1.md`
+- `docs/audits/2026-01-15-last2-tex-alignment.md`
 - `docs/REPRODUCIBILITY.md`
 - `docs/REPRODUCIBILITY_MANIFEST.json`
 - `README.md`（需补充 Data Availability 入口与 Release 链接）
 
 ### B. 图表（必须：`docs/experiments/1.md` 明确引用的）
+- `figures/fig01_architecture_and_block.pdf`（`paper/jec/last2.tex`）
+- `figures/fig02_pdk_module.pdf`（`paper/jec/last2.tex`）
+- `figures/fig03_cross_gate_fusion.pdf`（`paper/jec/last2.tex`）
+- `figures/fig04_pareto_tradeoff.pdf`（`paper/jec/last2.tex`）
+- `figures/fig05_fold_stability.pdf`（`paper/jec/last2.tex`）
+- `figures/fig06_radar.pdf`（`paper/jec/last2.tex`）
+- `figures/fig07_tsne.pdf`（`paper/jec/last2.tex`）
+- `figures/fig08_attention.pdf`（`paper/jec/last2.tex`）
+- `figures/fig09_confusion.pdf`（`paper/jec/last2.tex`）
 - `figures/fine_grained/age_stratification.png`
 - `figures/fine_grained/confusion_matrix_34class.png`
 - `figures/fine_grained/top_confused_pairs.png`
@@ -40,7 +48,7 @@
 
 **`docs/experiments/1.md`/`paper/jec/last2.tex` 涉及的关键输出目录（发布到 GitHub 时建议使用的“论文命名”）：**
 - `outputs/mspa_faa_pdk_baseline/`（Spectral baseline；seed 42/123；`ckpt_best*` 共 24；本地来源：baseline 输出目录（建议先重命名为 `outputs/mspa_faa_pdk_baseline/`））
-- `outputs/phycl_net/`（`phycl_net`；LOSO 12 折；**五个 seeds (42, 123, 456, 789, 1024)**；建议在公开仓库中整理为单一目录；本地来源可能分散在 `outputs/ablation_no_mspa/` 与历史 run 目录中）
+- `outputs/phycl_net/`（PhyCL-Net；LOSO 12 折；目标为 **五个 seeds (42, 123, 456, 789, 1024)**；若本地缺失 seed42/123 的 LOSO checkpoints，需要从训练机补齐后再打包到 Release）
 - `outputs/ablation_no_tfcl/`（w/o TFCL）
 - `outputs/ablation_no_dks/`（w/o DKS）
 - `outputs/ablation_no_faa/`（w/o FAA）
@@ -85,7 +93,6 @@
 PhyCL-Net-data-availability/
   README.md
   docs/experiments/1.md
-  docs/experiments/1.md
   docs/REPRODUCIBILITY.md
   docs/REPRODUCIBILITY_MANIFEST.json
   figures/
@@ -115,7 +122,7 @@ PhyCL-Net-data-availability/
 | `docs/experiments/1.md` / `paper/jec/last2.tex` 中的逻辑路径 | 公开仓库建议路径（论文命名） | 本地来源目录（当前工作区） |
 |---|---|
 | `outputs/mspa_faa_pdk_baseline/...` | `outputs/mspa_faa_pdk_baseline/...` | baseline 输出目录（建议先重命名为 `outputs/mspa_faa_pdk_baseline/`） |
-| `outputs/phycl_net_main/...` / `outputs/tdfnet_5seeds/...` | `outputs/phycl_net/...`（统一五个 seeds：42/123/456/789/1024） | `outputs/ablation_no_mspa/...` +（如有）其它历史 run 目录 |
+| `outputs/phycl_net_main/...` / `outputs/tdfnet_5seeds/...` | `outputs/phycl_net/...`（统一五个 seeds：42/123/456/789/1024） | `outputs/phycl_net/...` +（如有）其它历史 run 目录 |
 | `outputs/baseline_inceptiontime/...` | `outputs/baseline_inceptiontime/...` | `outputs/stage1_inceptiontime_final/...` |
 | `outputs/baseline_transformer/...` | `outputs/baseline_transformer/...` | `outputs/stage1_transformer_final/...` |
 | `outputs/baseline_lstm/...` | `outputs/baseline_lstm/...` | `outputs/stage1_lstm_final/...` |

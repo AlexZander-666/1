@@ -301,15 +301,18 @@ def classify_model_from_observations(
     if model_name == "inceptiontime" or "inceptiontime" in path_l:
         return MODEL_INCEPTION
 
-    # "Lite-AMSNet" can appear as "amsv2" in these logs; use the MSPA ablation flag if present.
-    if model_name in {"amsv2", "lite-amsnet", "lite_amsnet", "liteamsnet", "amsnet"} or "amsv2" in path_l:
+    if model_name in {"mspa_faa_pdk", "mspa-faa-pdk"}:
+        return MODEL_MSPA
+
+    # PhyCL-Net can appear as "amsv2" in some logs; use the MSPA ablation flag if present.
+    if model_name in {"phycl_net", "amsv2", "lite-amsnet", "lite_amsnet", "liteamsnet", "amsnet"} or "amsv2" in path_l:
         if mspa_enabled is True:
             return MODEL_MSPA
         if mspa_enabled is False:
             return MODEL_LITE
 
     # Path-based fallback heuristics.
-    if "no_mspa" in path_l or "ablation_no_mspa" in path_l:
+    if "phycl_net" in path_l or "no_mspa" in path_l or "ablation_no_mspa" in path_l:
         return MODEL_LITE
     if "mspa" in path_l or "full_mspa" in path_l:
         return MODEL_MSPA
