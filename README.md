@@ -1,6 +1,5 @@
-# PhyCL-Net Fall Detection
-
-Physics-inspired contrastive lightweight network for wearable fall detection. This repo bundles training code, analysis scripts, and manuscript assets; datasets and checkpoints stay local to keep runs reproducible.
+# PhyCL-Net Data Availability Archive
+Data availability archive for the JEC submission “Physics-Guided Contrastive Learning for Low-Latency On-Device Wearable Fall Detection”. This repository provides the source code, derived experimental results, figures, and reproducibility instructions; trained checkpoints are distributed via GitHub Releases.
 
 ## Environment
 - Activate env before any install/run: `conda activate SCI666`
@@ -17,6 +16,10 @@ Physics-inspired contrastive lightweight network for wearable fall detection. Th
 ## Data Availability
 - Repo: `https://github.com/AlexZander-666/1`
 - Checkpoints: publish `ckpt_best_seed*_loso_SA*.pth` as GitHub Release assets with `SHA256SUMS.txt` (see `docs/plans/2026-01-15-github-data-availability.md`).
+
+### Suggested GitHub repo settings (reviewer-friendly)
+- Repository name: `phycl-net-data-availability`
+- Description: `Data availability archive for PhyCL-Net: code, derived results, figures, and reproducibility instructions; checkpoints via GitHub Releases.`
 
 ## Project Layout
 - `code1/` - training entry (`PhyCL-Net_experiments.py`; wrapper `phycl_net_experiments.py`), models, losses, and analysis scripts.

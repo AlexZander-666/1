@@ -197,7 +197,7 @@ PhyCL-Net-data-availability/
 
 ### Task 5: 创建 GitHub 仓库并上传
 **Steps:**
-1. 本次目标仓库：`https://github.com/AlexZander-666/1`（默认按独立数据可用性仓库管理）。
+1. 本次目标仓库（建议重命名为 `phycl-net-data-availability`）：`https://github.com/AlexZander-666/1`（默认按独立数据可用性仓库管理）。
 2. 提交并推送：代码/文档/图表/轻量结果（JSON/CSV/log）。
 3. 创建 GitHub Release：`paper-v1.0-artifacts`，上传 Task 4 的 zip 权重与 `SHA256SUMS.txt`。
 4. 打 tag（可选）：`v1.0-paper`，并在 Release 描述中注明对应论文版本与 commit hash。
