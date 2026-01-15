@@ -1,8 +1,8 @@
-# GitHub Data Availability Execution Plan (PhyCL-Net / `template/1.md`)
+# GitHub Data Availability Execution Plan (PhyCL-Net / `docs/experiments/1.md`)
 
 > **For Claude:** REQUIRED SUB-SKILL: Use `superpowers:executing-plans` to implement this plan task-by-task.
 
-**Goal:** 将 `template/1.md` 中涉及的实验结果、图表、复现脚本与训练得到的模型权重（LOSO 各折 best checkpoints）整理为一个可公开、可核验、可复现的 GitHub 归档，用于期刊 Data Availability Statement。
+**Goal:** 将实验记录 `docs/experiments/1.md`（原 `template/1.md`）中涉及的实验结果、图表、复现脚本与训练得到的模型权重（LOSO 各折 best checkpoints）整理为一个可公开、可核验、可复现的 GitHub 归档，用于期刊 Data Availability Statement。
 
 **Architecture:** 采用“代码与轻量结果进 Git 仓库 + 大体积权重走 GitHub Release 资产（zip 分卷）”的方式，规避 GitHub 单文件 100MB 限制与 Git LFS 配额风险，同时保留可复现所需的每折权重与逐折结果 JSON/CSV。
 
@@ -10,16 +10,15 @@
 
 ---
 
-## Scope：必须覆盖的“与 `template/1.md` / `template/last2.tex` 相关”内容
+## Scope：必须覆盖的“与 `docs/experiments/1.md` / `paper/jec/last2.tex` 相关”内容
 
 ### A. 论文数据汇总/口径文件（必须）
-- `template/1.md`
-- `docs/experiments/1.md`（同内容的存档/镜像，建议一并公开）
+- `docs/experiments/1.md`
 - `docs/REPRODUCIBILITY.md`
 - `docs/REPRODUCIBILITY_MANIFEST.json`
 - `README.md`（需补充 Data Availability 入口与 Release 链接）
 
-### B. 图表（必须：`template/1.md` 明确引用的）
+### B. 图表（必须：`docs/experiments/1.md` 明确引用的）
 - `figures/fine_grained/age_stratification.png`
 - `figures/fine_grained/confusion_matrix_34class.png`
 - `figures/fine_grained/top_confused_pairs.png`
@@ -30,7 +29,7 @@
 - `outputs/robustness_final/Robustness_to_Sensor_Noise.png`
 - `outputs/robustness_final/noise_robustness_results.csv`
 
-### C. 实验结果与元数据（必须：支撑 `template/1.md` 中表格/结论）
+### C. 实验结果与元数据（必须：支撑 `docs/experiments/1.md` 中表格/结论）
 对每个实验输出目录，至少包含：
 - `summary_results.json`
 - `loso_results_seed*.json`
@@ -39,7 +38,7 @@
 - `experiment.log`
 - `errors_seed*_loso_SA*.csv`（可选但推荐，便于误差审计）
 
-**`template/1.md`/`template/last2.tex` 涉及的关键输出目录（发布到 GitHub 时建议使用的“论文命名”）：**
+**`docs/experiments/1.md`/`paper/jec/last2.tex` 涉及的关键输出目录（发布到 GitHub 时建议使用的“论文命名”）：**
 - `outputs/mspa_faa_pdk_baseline/`（Spectral baseline；seed 42/123；`ckpt_best*` 共 24；本地来源：baseline 输出目录（建议先重命名为 `outputs/mspa_faa_pdk_baseline/`））
 - `outputs/phycl_net/`（`phycl_net`；LOSO 12 折；**五个 seeds (42, 123, 456, 789, 1024)**；建议在公开仓库中整理为单一目录；本地来源可能分散在 `outputs/ablation_no_mspa/` 与历史 run 目录中）
 - `outputs/ablation_no_tfcl/`（w/o TFCL）
@@ -54,7 +53,7 @@
 - `outputs/stage1_tcn_final/`（TCN baseline）
 - `outputs/lite_amsnet_sa01/`（`template/1.md` 引用的 Lite 模型权重示例）
 
-> 说明：`template/1.md` 中还出现了 `outputs/phycl_net_main`、`outputs/mspa_faa_pdk_baseline`、`outputs/baseline_*` 等“逻辑目录名”。建议在公开仓库中提供一份 **Path Mapping 表**（见下文），将这些逻辑名映射到公开仓库的“论文命名目录”（并注明本地来源目录）。
+> 说明：实验记录中还出现了 `outputs/phycl_net_main`、`outputs/mspa_faa_pdk_baseline`、`outputs/baseline_*` 等“逻辑目录名”。建议在公开仓库中提供一份 **Path Mapping 表**（见下文），将这些逻辑名映射到公开仓库的“论文命名目录”（并注明本地来源目录）。
 
 ### D. 复现代码（必须：能从 outputs 复核指标/曲线）
 本仓库实际主代码目录为 `code1/`（README/AGENTS.md 里写的 `code/` 在当前工作区不存在）：
@@ -113,7 +112,7 @@ PhyCL-Net-data-availability/
 
 ## Path Mapping（必须写进 `manifests/PATH_MAPPING.md`）
 
-| `template/1.md` / `template/last2.tex` 中的逻辑路径 | 公开仓库建议路径（论文命名） | 本地来源目录（当前工作区） |
+| `docs/experiments/1.md` / `paper/jec/last2.tex` 中的逻辑路径 | 公开仓库建议路径（论文命名） | 本地来源目录（当前工作区） |
 |---|---|
 | `outputs/mspa_faa_pdk_baseline/...` | `outputs/mspa_faa_pdk_baseline/...` | baseline 输出目录（建议先重命名为 `outputs/mspa_faa_pdk_baseline/`） |
 | `outputs/phycl_net_main/...` / `outputs/tdfnet_5seeds/...` | `outputs/phycl_net/...`（统一五个 seeds：42/123/456/789/1024） | `outputs/ablation_no_mspa/...` +（如有）其它历史 run 目录 |
