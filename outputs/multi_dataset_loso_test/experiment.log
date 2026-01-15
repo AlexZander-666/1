@@ -1,0 +1,207 @@
+2025-12-18 21:20:10,465 - INFO - Configuration: {
+  "data_root": "./data",
+  "out_dir": "./outputs/multi_dataset_loso_test",
+  "epochs": 2,
+  "batch_size": 32,
+  "lr": 0.001,
+  "patience": 15,
+  "seed": 42,
+  "num_workers": 0,
+  "amp": false
+}
+2025-12-18 21:20:10,517 - INFO - Using device: cuda
+2025-12-18 21:20:10,517 - INFO - Loading datasets...
+2025-12-18 21:20:10,518 - INFO - Loading SisFall from ./data\SisFall...
+2025-12-18 21:21:20,548 - INFO - SisFall loaded: 9016 windows
+2025-12-18 21:21:20,549 - INFO - Loading MobiFall from ./data\MobiFall_Dataset_v2.0...
+2025-12-18 21:21:42,697 - INFO - MobiFall loaded: 3711 windows
+2025-12-18 21:21:42,700 - INFO - 
+Dataset Statistics:
+2025-12-18 21:21:42,700 - INFO -   SisFall: 9016 windows (Falls: 3600, ADLs: 5416)
+2025-12-18 21:21:42,701 - INFO -   MobiFall: 3711 windows (Falls: 625, ADLs: 3086)
+2025-12-18 21:21:42,702 - INFO - 
+============================================================
+2025-12-18 21:21:42,702 - INFO - Fold 1/12: Test Subject = SA01
+2025-12-18 21:21:42,702 - INFO - ============================================================
+2025-12-18 21:21:42,715 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:21:42,715 - INFO - Val: 752 SisFall
+2025-12-18 21:21:42,716 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:27:50,225 - INFO - Configuration: {
+  "data_root": "./data",
+  "out_dir": "./outputs/multi_dataset_loso_test",
+  "epochs": 2,
+  "batch_size": 32,
+  "lr": 0.001,
+  "patience": 15,
+  "seed": 42,
+  "num_workers": 0,
+  "amp": false
+}
+2025-12-18 21:27:50,277 - INFO - Using device: cuda
+2025-12-18 21:27:50,278 - INFO - Loading datasets...
+2025-12-18 21:27:50,279 - INFO - Loading SisFall from ./data\SisFall...
+2025-12-18 21:29:30,003 - INFO - SisFall loaded: 9016 windows
+2025-12-18 21:29:30,004 - INFO - Loading MobiFall from ./data\MobiFall_Dataset_v2.0...
+2025-12-18 21:29:44,927 - INFO - MobiFall loaded: 3711 windows
+2025-12-18 21:29:44,930 - INFO - 
+Dataset Statistics:
+2025-12-18 21:29:44,931 - INFO -   SisFall: 9016 windows (Falls: 3600, ADLs: 5416)
+2025-12-18 21:29:44,931 - INFO -   MobiFall: 3711 windows (Falls: 625, ADLs: 3086)
+2025-12-18 21:29:44,932 - INFO - 
+============================================================
+2025-12-18 21:29:44,933 - INFO - Fold 1/12: Test Subject = SA01
+2025-12-18 21:29:44,933 - INFO - ============================================================
+2025-12-18 21:29:44,945 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:29:44,945 - INFO - Val: 752 SisFall
+2025-12-18 21:29:44,946 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:29:56,377 - INFO - Epoch 1/2: Loss=0.4282, TrainAcc=80.03%, ValF1=89.12%
+2025-12-18 21:30:02,784 - INFO - Fold 1 Results:
+2025-12-18 21:30:02,784 - INFO -   SisFall Test Acc: 82.18%
+2025-12-18 21:30:02,785 - INFO -   MobiFall Test Acc: 93.02%
+2025-12-18 21:30:02,785 - INFO -   Cross-Dataset F1: 85.96%
+2025-12-18 21:30:02,788 - INFO - 
+============================================================
+2025-12-18 21:30:02,788 - INFO - Fold 2/12: Test Subject = SA02
+2025-12-18 21:30:02,789 - INFO - ============================================================
+2025-12-18 21:30:02,800 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:30:02,800 - INFO - Val: 752 SisFall
+2025-12-18 21:30:02,801 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:30:08,229 - INFO - Epoch 1/2: Loss=0.4129, TrainAcc=81.32%, ValF1=77.30%
+2025-12-18 21:30:14,578 - INFO - Fold 2 Results:
+2025-12-18 21:30:14,579 - INFO -   SisFall Test Acc: 78.32%
+2025-12-18 21:30:14,579 - INFO -   MobiFall Test Acc: 94.18%
+2025-12-18 21:30:14,579 - INFO -   Cross-Dataset F1: 89.09%
+2025-12-18 21:30:14,582 - INFO - 
+============================================================
+2025-12-18 21:30:14,582 - INFO - Fold 3/12: Test Subject = SA04
+2025-12-18 21:30:14,583 - INFO - ============================================================
+2025-12-18 21:30:14,594 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:30:14,594 - INFO - Val: 752 SisFall
+2025-12-18 21:30:14,595 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:30:19,589 - INFO - Epoch 1/2: Loss=0.4590, TrainAcc=80.99%, ValF1=84.64%
+2025-12-18 21:30:25,484 - INFO - Fold 3 Results:
+2025-12-18 21:30:25,484 - INFO -   SisFall Test Acc: 87.77%
+2025-12-18 21:30:25,484 - INFO -   MobiFall Test Acc: 92.62%
+2025-12-18 21:30:25,485 - INFO -   Cross-Dataset F1: 85.76%
+2025-12-18 21:30:25,487 - INFO - 
+============================================================
+2025-12-18 21:30:25,488 - INFO - Fold 4/12: Test Subject = SA05
+2025-12-18 21:30:25,488 - INFO - ============================================================
+2025-12-18 21:30:25,501 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:30:25,501 - INFO - Val: 752 SisFall
+2025-12-18 21:30:25,502 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:30:30,421 - INFO - Epoch 1/2: Loss=0.4069, TrainAcc=82.11%, ValF1=83.75%
+2025-12-18 21:30:36,352 - INFO - Fold 4 Results:
+2025-12-18 21:30:36,353 - INFO -   SisFall Test Acc: 83.11%
+2025-12-18 21:30:36,353 - INFO -   MobiFall Test Acc: 93.75%
+2025-12-18 21:30:36,353 - INFO -   Cross-Dataset F1: 87.98%
+2025-12-18 21:30:36,356 - INFO - 
+============================================================
+2025-12-18 21:30:36,357 - INFO - Fold 5/12: Test Subject = SA06
+2025-12-18 21:30:36,357 - INFO - ============================================================
+2025-12-18 21:30:36,369 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:30:36,369 - INFO - Val: 752 SisFall
+2025-12-18 21:30:36,370 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:30:41,422 - INFO - Epoch 1/2: Loss=0.4279, TrainAcc=79.85%, ValF1=72.57%
+2025-12-18 21:30:47,264 - INFO - Fold 5 Results:
+2025-12-18 21:30:47,265 - INFO -   SisFall Test Acc: 87.23%
+2025-12-18 21:30:47,265 - INFO -   MobiFall Test Acc: 93.56%
+2025-12-18 21:30:47,266 - INFO -   Cross-Dataset F1: 88.06%
+2025-12-18 21:30:47,270 - INFO - 
+============================================================
+2025-12-18 21:30:47,271 - INFO - Fold 6/12: Test Subject = SA09
+2025-12-18 21:30:47,271 - INFO - ============================================================
+2025-12-18 21:30:47,283 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:30:47,283 - INFO - Val: 752 SisFall
+2025-12-18 21:30:47,284 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:30:52,346 - INFO - Epoch 1/2: Loss=0.4294, TrainAcc=80.40%, ValF1=87.54%
+2025-12-18 21:30:58,122 - INFO - Fold 6 Results:
+2025-12-18 21:30:58,123 - INFO -   SisFall Test Acc: 85.90%
+2025-12-18 21:30:58,123 - INFO -   MobiFall Test Acc: 93.78%
+2025-12-18 21:30:58,124 - INFO -   Cross-Dataset F1: 88.48%
+2025-12-18 21:30:58,128 - INFO - 
+============================================================
+2025-12-18 21:30:58,128 - INFO - Fold 7/12: Test Subject = SA10
+2025-12-18 21:30:58,129 - INFO - ============================================================
+2025-12-18 21:30:58,141 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:30:58,141 - INFO - Val: 752 SisFall
+2025-12-18 21:30:58,142 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:31:03,237 - INFO - Epoch 1/2: Loss=0.4199, TrainAcc=80.81%, ValF1=85.31%
+2025-12-18 21:31:09,038 - INFO - Fold 7 Results:
+2025-12-18 21:31:09,039 - INFO -   SisFall Test Acc: 88.70%
+2025-12-18 21:31:09,039 - INFO -   MobiFall Test Acc: 93.02%
+2025-12-18 21:31:09,040 - INFO -   Cross-Dataset F1: 86.31%
+2025-12-18 21:31:09,043 - INFO - 
+============================================================
+2025-12-18 21:31:09,044 - INFO - Fold 8/12: Test Subject = SA11
+2025-12-18 21:31:09,044 - INFO - ============================================================
+2025-12-18 21:31:09,056 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:31:09,057 - INFO - Val: 752 SisFall
+2025-12-18 21:31:09,057 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:31:14,022 - INFO - Epoch 1/2: Loss=0.4034, TrainAcc=83.09%, ValF1=73.91%
+2025-12-18 21:31:19,689 - INFO - Fold 8 Results:
+2025-12-18 21:31:19,690 - INFO -   SisFall Test Acc: 87.63%
+2025-12-18 21:31:19,690 - INFO -   MobiFall Test Acc: 94.80%
+2025-12-18 21:31:19,690 - INFO -   Cross-Dataset F1: 90.26%
+2025-12-18 21:31:19,693 - INFO - 
+============================================================
+2025-12-18 21:31:19,693 - INFO - Fold 9/12: Test Subject = SA17
+2025-12-18 21:31:19,693 - INFO - ============================================================
+2025-12-18 21:31:19,700 - INFO - Train: 7520 SisFall + 3711 MobiFall = 11231
+2025-12-18 21:31:19,700 - INFO - Val: 752 SisFall
+2025-12-18 21:31:19,700 - INFO - Test: 744 SisFall (held-out subject)
+2025-12-18 21:31:24,732 - INFO - Epoch 1/2: Loss=0.4182, TrainAcc=81.36%, ValF1=87.58%
+2025-12-18 21:31:30,532 - INFO - Fold 9 Results:
+2025-12-18 21:31:30,533 - INFO -   SisFall Test Acc: 92.20%
+2025-12-18 21:31:30,533 - INFO -   MobiFall Test Acc: 93.26%
+2025-12-18 21:31:30,533 - INFO -   Cross-Dataset F1: 87.93%
+2025-12-18 21:31:30,538 - INFO - 
+============================================================
+2025-12-18 21:31:30,538 - INFO - Fold 10/12: Test Subject = SA18
+2025-12-18 21:31:30,538 - INFO - ============================================================
+2025-12-18 21:31:30,549 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:31:30,550 - INFO - Val: 752 SisFall
+2025-12-18 21:31:30,550 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:31:35,754 - INFO - Epoch 1/2: Loss=0.4161, TrainAcc=81.13%, ValF1=87.20%
+2025-12-18 21:31:41,738 - INFO - Fold 10 Results:
+2025-12-18 21:31:41,739 - INFO -   SisFall Test Acc: 82.85%
+2025-12-18 21:31:41,739 - INFO -   MobiFall Test Acc: 93.16%
+2025-12-18 21:31:41,740 - INFO -   Cross-Dataset F1: 87.13%
+2025-12-18 21:31:41,744 - INFO - 
+============================================================
+2025-12-18 21:31:41,745 - INFO - Fold 11/12: Test Subject = SA19
+2025-12-18 21:31:41,745 - INFO - ============================================================
+2025-12-18 21:31:41,757 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:31:41,757 - INFO - Val: 752 SisFall
+2025-12-18 21:31:41,758 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:31:46,894 - INFO - Epoch 1/2: Loss=0.4191, TrainAcc=80.70%, ValF1=84.98%
+2025-12-18 21:31:52,862 - INFO - Fold 11 Results:
+2025-12-18 21:31:52,862 - INFO -   SisFall Test Acc: 88.30%
+2025-12-18 21:31:52,863 - INFO -   MobiFall Test Acc: 92.91%
+2025-12-18 21:31:52,863 - INFO -   Cross-Dataset F1: 85.87%
+2025-12-18 21:31:52,868 - INFO - 
+============================================================
+2025-12-18 21:31:52,868 - INFO - Fold 12/12: Test Subject = SA21
+2025-12-18 21:31:52,869 - INFO - ============================================================
+2025-12-18 21:31:52,879 - INFO - Train: 7512 SisFall + 3711 MobiFall = 11223
+2025-12-18 21:31:52,879 - INFO - Val: 752 SisFall
+2025-12-18 21:31:52,879 - INFO - Test: 752 SisFall (held-out subject)
+2025-12-18 21:31:58,061 - INFO - Epoch 1/2: Loss=0.4277, TrainAcc=80.79%, ValF1=75.77%
+2025-12-18 21:32:04,271 - INFO - Fold 12 Results:
+2025-12-18 21:32:04,272 - INFO -   SisFall Test Acc: 88.83%
+2025-12-18 21:32:04,272 - INFO -   MobiFall Test Acc: 93.24%
+2025-12-18 21:32:04,273 - INFO -   Cross-Dataset F1: 86.41%
+2025-12-18 21:32:04,295 - INFO - Results saved to ./outputs/multi_dataset_loso_test\summary_results.json
+2025-12-18 21:32:04,295 - INFO - Per-fold metrics saved to ./outputs/multi_dataset_loso_test\per_fold_metrics.csv
+2025-12-18 21:32:04,296 - INFO - 
+============================================================
+2025-12-18 21:32:04,296 - INFO - FINAL RESULTS
+2025-12-18 21:32:04,297 - INFO - ============================================================
+2025-12-18 21:32:04,297 - INFO - SisFall Accuracy: 86.09% ¡À 3.63%
+2025-12-18 21:32:04,297 - INFO - SisFall F1: 85.68% ¡À 3.88%
+2025-12-18 21:32:04,298 - INFO - MobiFall Accuracy: 93.44% ¡À 0.58%
+2025-12-18 21:32:04,298 - INFO - MobiFall F1: 87.44% ¡À 1.37%
+2025-12-18 21:32:04,299 - INFO - Cross-Dataset F1: 87.44% ¡À 1.37%
+2025-12-18 21:32:04,299 - INFO - ============================================================
+2025-12-18 21:32:04,300 - INFO - 
+Experiment completed in 0.07 hours

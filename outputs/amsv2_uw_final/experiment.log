@@ -1,0 +1,23 @@
+2025-12-18 22:00:29,820 - INFO - Logging initialized. Output directory: outputs/amsv2_uw_final
+2025-12-18 22:00:31,074 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': 'outputs/amsv2_uw_final', 'model': 'amsv2', 'epochs': 100, 'batch_size': 32, 'lr': 0.001, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 0, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'holdout', 'seeds': [42], 'amp': True, 'weighted_loss': True, 'class_weighting': None, 'effective_num_beta': 0.999, 'profile': False, 'run_robustness': True, 'run_ablation_suite': False, 'allow_metrics_fallback': False, 'viz_tsne': True, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': True, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'uncertainty_weighting': True, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
+2025-12-18 22:00:31,078 - INFO - Seed set to 42 (deterministic=False)
+2025-12-18 22:00:31,120 - INFO - Found 12 unique subjects at 'D:\SCI666\data\SisFall': ['SA11', 'SA09', 'SA04', 'SA17', 'SA18', 'SA10', 'SA21', 'SA05', 'SA06', 'SA01', 'SA02', 'SA19']
+2025-12-18 22:00:31,120 - INFO - Train subjects (8): ['SA11', 'SA09', 'SA04', 'SA17', 'SA18', 'SA10', 'SA21', 'SA05']
+2025-12-18 22:00:31,120 - INFO - Val subjects (2): ['SA06', 'SA01']
+2025-12-18 22:00:31,120 - INFO - Test subjects (2): ['SA02', 'SA19']
+2025-12-18 22:01:58,670 - INFO - [main] Model: amsv2
+2025-12-18 22:01:58,670 - INFO - [main]   Total params: 1.65M
+2025-12-18 22:01:58,670 - INFO - [main]   Trainable params: 1.65M
+2025-12-18 22:02:02,093 - INFO - [main] Using weighted CrossEntropyLoss based on training data balance.
+2025-12-18 22:02:02,104 - INFO - Computed class weights (auto): [0.8551977 1.2038333]
+2025-12-18 22:02:02,104 - INFO - [main] Using uncertainty weighting (Kendall et al.) for automatic loss balancing
+2025-12-18 22:02:02,106 - INFO - [main] Starting training: epochs=100, batch_size=32, num_workers=0, train_samples=14446
+2025-12-18 22:06:16,446 - DEBUG - Eval predictions unique: [0 1], counts: [2084 1532]
+2025-12-18 22:06:16,447 - DEBUG - Eval labels unique: [0 1], counts: [2116 1500]
+2025-12-18 22:06:16,453 - DEBUG - Eval confusion matrix:
+[[1900  216]
+ [ 184 1316]]
+2025-12-18 22:06:16,454 - DEBUG - Manual metrics - Acc: 0.8894, Macro F1: 0.8864, Fall F1: 0.8681
+2025-12-18 22:06:16,458 - DEBUG - Accuracy: 0.8894
+2025-12-18 22:06:16,486 - DEBUG - F1 scores - Macro: 0.8864, Class0: 0.9048, Class1: 0.8681
+2025-12-18 22:06:17,782 - INFO - [main] Seed 42 | Ep 1: Loss=2.1903 (ce=0.4783 tfcl_layer0=1.3338 tfcl_cross0->1=1.7954 tfcl_layer1=1.4238 tfcl_cross1->2=1.5602 tfcl_layer2=0.9948 tfcl_cross2->3=1.2178 tfcl_layer3=0.8987 tfcl_cross3->4=1.0226 tfcl_layer4=0.5986 tfcl_cross4->5=0.9875 tfcl_layer5=0.9727 tfcl_sup=5.9087 tfcl_total=1.4647 center=0.2473 task0_weight=1.0000 task0_sigma=1.0000 task0_weighted=0.4783 task1_weight=1.0000 task1_sigma=1.0000 task1_weighted=1.4647 task2_weight=1.0000 task2_sigma=1.0000 task2_weighted=0.2473 total_uncertainty=2.1903 uw_ce=1.0000 uw_tfcl=1.0000 uw_center=1.0000) Val_F1=0.8864 Best_F1=0.8864

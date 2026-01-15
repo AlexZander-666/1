@@ -1,0 +1,91 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Data directories (large files)
+data/
+SisFall_dataset/
+KFall/
+UniMiB_SHAR/
+MobiFall/
+downloads/
+
+# Output directories
+# NOTE (data availability): keep `outputs/` + `figures/` tracked for JSON/CSV/plots;
+# model weights remain excluded by patterns below.
+/code/outputs/
+/logs/
+*.pth
+*.ckpt
+
+# Keep manuscript figure sources tracked
+!paper/arXiv/figures/
+!paper/arXiv/figures/**
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.claude/
+.cursor/
+
+# OS
+.DS_Store
+Thumbs.db
+nul
+
+# Temporary files
+*.tmp
+*.temp
+.tmp_*/
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PDF outputs (keep source .tex)
+paper/arXiv/*.pdf
+!paper/arXiv/template.pdf
+!paper/arXiv/orcid.pdf
+
+# LaTeX build artifacts
+paper/arXiv/*.aux
+paper/arXiv/*.log
+paper/arXiv/*.out
+paper/arXiv/*.bbl
+paper/arXiv/*.blg
+paper/arXiv/*.toc
+paper/arXiv/*.synctex.gz
+paper/arXiv/*.fls
+paper/arXiv/*.fdb_latexmk
+
+# Local paper templates (not for GitHub)
+template/

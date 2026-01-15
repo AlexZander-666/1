@@ -1,0 +1,32 @@
+{
+  "train": {
+    "total": 200,
+    "label_counts": {
+      "1": 106,
+      "0": 94
+    },
+    "subject_counts": {
+      "synth": 200
+    }
+  },
+  "val": {
+    "total": 50,
+    "label_counts": {
+      "1": 30,
+      "0": 20
+    },
+    "subject_counts": {
+      "synth": 50
+    }
+  },
+  "test": {
+    "total": 50,
+    "label_counts": {
+      "1": 26,
+      "0": 24
+    },
+    "subject_counts": {
+      "synth": 50
+    }
+  }
+}
