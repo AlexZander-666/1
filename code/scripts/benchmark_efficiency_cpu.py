@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-CPU efficiency benchmark for `paper/jec/last2.tex` (p50/p95 latency, params, FLOPs).
+CPU efficiency benchmark for `docs/main.tex` (p50/p95 latency, params, FLOPs).
 
 Notes
 - Activate the required env before running (project rule): `conda activate SCI666`
@@ -20,10 +20,10 @@ from typing import Any, Dict, Optional
 
 import torch
 
-# Ensure `code1/` is on sys.path when running via `python code1/scripts/...`
+# Ensure `code/` is on sys.path when running via `python code/scripts/...`
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from models.ams_net_v2 import AMSNetV2
+from models.PhyCL_Net import PhyCL_Net
 
 
 @dataclass(frozen=True)
@@ -61,7 +61,7 @@ def _build_model(model_name: str, proj_dim: int) -> torch.nn.Module:
     if model_key == "phycl_net":
         ablation["mspa"] = False
 
-    model = AMSNetV2(in_channels=3, num_classes=2, proj_dim=proj_dim, ablation=ablation)
+    model = PhyCL_Net(in_channels=3, num_classes=2, proj_dim=proj_dim, ablation=ablation)
     if hasattr(model, "set_deploy"):
         model.set_deploy(True)
     model.eval()

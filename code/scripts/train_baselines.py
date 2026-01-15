@@ -1,7 +1,7 @@
 """
 train_baselines.py - Baseline Models Training Script for SCI Paper Comparison
 
-Implements two lightweight baseline models for comparison with AMSNetV2:
+Implements two lightweight baseline models for comparison with PhyCL_Net:
 1. Standard LSTM (2-layer, bidirectional)
 2. ResNet-1D (simplified ResNet-18 structure)
 

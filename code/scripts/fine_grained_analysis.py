@@ -9,7 +9,7 @@ This script generates:
 3. Age stratification analysis with independent t-test (SA: Young vs SE: Elderly)
 
 Usage:
-    python code1/scripts/fine_grained_analysis.py --output-dir outputs/phycl_net --figure-dir figures/fine_grained
+    python code/scripts/fine_grained_analysis.py --output-dir outputs/phycl_net --figure-dir figures/fine_grained
 """
 
 import os

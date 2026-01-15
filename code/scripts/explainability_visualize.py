@@ -24,7 +24,7 @@ from phycl_net_experiments import (  # noqa: E402
     _resolve_sisfall_root,
     parse_ablation_config,
 )
-from models.ams_net_v2 import AMSNetV2  # noqa: E402
+from models.PhyCL_Net import PhyCL_Net  # noqa: E402
 
 
 logging.basicConfig(
@@ -92,9 +92,9 @@ def load_model(
     config_args: Dict[str, Any],
     ablation_spec: str,
     device: torch.device,
-) -> AMSNetV2:
+) -> PhyCL_Net:
     ablation = parse_ablation_config(ablation_spec or config_args.get("ablation"))
-    model = AMSNetV2(
+    model = PhyCL_Net(
         in_channels=int(config_args.get("in_channels", 3)),
         num_classes=int(config_args.get("num_classes", 2)),
         proj_dim=int(config_args.get("proj_dim", 128)),

@@ -1,7 +1,5 @@
 """Model package (paper-facing names + internal implementations)."""
 
-from .ams_net_v2 import AMSNetV2
+from .PhyCL_Net import PhyCL_Net
 
-from .phycl_net import PhyCLNet
-
-__all__ = ["AMSNetV2", "PhyCLNet"]
+__all__ = ["PhyCL_Net"]

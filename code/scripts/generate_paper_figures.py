@@ -34,7 +34,7 @@ from sklearn.manifold import TSNE
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from models.ams_net_v2 import AMSNetV2
+from models.PhyCL_Net import PhyCL_Net
 
 logging.basicConfig(
     level=logging.INFO,
@@ -147,14 +147,14 @@ class FeatureExtractor:
 
 
 class AttentionExtractor:
-    """Extract Fall-Aware Attention weights from AMSNetV2."""
+    """Extract Fall-Aware Attention weights from PhyCL_Net."""
 
     def __init__(self, model: nn.Module):
         """
         Initialize attention extractor.
 
         Args:
-            model: AMSNetV2 model instance
+            model: PhyCL_Net model instance
         """
         self.model = model
         self.faa_modules: List[nn.Module] = []
@@ -343,7 +343,7 @@ def plot_tsne_comparison(
     ax1.set_title('(a) Baseline Model', fontweight='bold')
     ax1.legend(loc='upper right', markerscale=1.5)
 
-    # Plot AMSNetV2
+    # Plot PhyCL_Net
     ax2 = axes[1]
     for label in [0, 1]:
         mask = phycl_net_labels == label
@@ -755,9 +755,9 @@ def load_model(
     checkpoint_path: Path,
     device: torch.device,
     ablation: Optional[Dict[str, bool]] = None,
-) -> AMSNetV2:
+) -> PhyCL_Net:
     """
-    Load AMSNetV2 model from checkpoint.
+    Load PhyCL_Net model from checkpoint.
 
     Args:
         checkpoint_path: Path to .pth checkpoint
@@ -773,7 +773,7 @@ def load_model(
     if ablation is None:
         ablation = {'mspa': True, 'dks': True, 'faa': True}
 
-    model = AMSNetV2(
+    model = PhyCL_Net(
         in_channels=3,
         num_classes=2,
         ablation=ablation,
@@ -806,15 +806,15 @@ def load_model(
     return model
 
 
-def create_baseline_model(device: torch.device) -> AMSNetV2:
+def create_baseline_model(device: torch.device) -> PhyCL_Net:
     """
-    Create baseline model (AMSNetV2 without key components).
+    Create baseline model (PhyCL_Net without key components).
 
     This serves as a baseline for comparison - same architecture
     but with MSPA, DKS, and FAA disabled.
     """
     ablation = {'mspa': False, 'dks': False, 'faa': False}
-    model = AMSNetV2(
+    model = PhyCL_Net(
         in_channels=3,
         num_classes=2,
         ablation=ablation,
@@ -920,7 +920,7 @@ def generate_demo_attention(
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Generate publication figures for AMSNetV2 paper',
+        description='Generate publication figures for PhyCL-Net paper',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
@@ -958,7 +958,7 @@ def main():
         # Add small class-dependent shift
         baseline_features[baseline_labels == 1] += 0.5
 
-        # AMSNetV2: features with good separation
+        # PhyCL_Net: features with good separation
         phycl_net_features = np.random.randn(n_samples, 128)
         phycl_net_labels = np.random.randint(0, 2, n_samples)
         # Add large class-dependent shift
@@ -1027,7 +1027,7 @@ def main():
             baseline_model, loader, device, max_samples=args.max_samples
         )
 
-        logger.info("Extracting features from AMSNetV2...")
+        logger.info("Extracting features from PhyCL_Net...")
         phycl_net_features, phycl_net_labels = get_features_and_labels(
             phycl_net_model, loader, device, max_samples=args.max_samples
         )

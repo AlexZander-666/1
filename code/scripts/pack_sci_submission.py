@@ -39,7 +39,7 @@ DOCS_ROOT = PROJECT_ROOT.parent / "docs"
 # Core model source files to include
 CORE_SOURCE_FILES = [
     "models/__init__.py",
-    "models/ams_net_v2.py",
+    "models/PhyCL_Net.py",
     "models/modules/__init__.py",
     "models/modules/dks.py",
     "models/modules/faa.py",
@@ -448,7 +448,7 @@ def pack_submission(output_dir: Path, include_checkpoints: bool = False):
 ## 📁 打包内容
 
 ### 代码 (code/)
-- [x] 核心模型代码 (models/ams_net_v2.py)
+- [x] 核心模型代码 (models/PhyCL_Net.py)
 - [x] 模块实现 (DKS, FAA, MSPA, TFCL)
 - [x] 训练脚本 (phycl_net_experiments.py)
 - [x] 依赖清单 (requirements.txt)
@@ -583,10 +583,10 @@ submission_package/
 
 ```bash
 # Install dependencies
-pip install -r code/requirements.txt
+pip install -r requirements.txt
 
   # Train PhyCL-Net (paper setting)
-  python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data \\
+  python code/phycl_net_experiments.py --dataset sisfall --data-root ./data \\
       --model phycl_net --eval-mode loso --seeds 42 123 456 789 1024 --epochs 50 \\
       --batch-size 256 --lr 0.004 --warmup-epochs 10 --amp --weighted-loss --use-tfcl
 ```

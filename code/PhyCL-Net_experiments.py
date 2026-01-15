@@ -1,7 +1,7 @@
 """
 PhyCL-Net experiments
 
-此脚本实现了 PhyCL-Net（论文 `paper/jec/last2.tex`）及相关基线的训练与评估流程。
+此脚本实现了 PhyCL-Net（论文 `docs/main.tex`）及相关基线的训练与评估流程。
 针对 SCI 投稿要求进行了严格的工程化修复和增强。
 
 主要修复 (Fixes & Optimizations):
@@ -14,13 +14,13 @@ PhyCL-Net experiments
 
 Usage:
     # 快速验证 (Dry Run)
-    python code1/PhyCL-Net_experiments.py --dataset dryrun --profile --epochs 2 --batch-size 4
+    python code/PhyCL-Net_experiments.py --dataset dryrun --profile --epochs 2 --batch-size 4
 
     # 真实实验 (SisFall LOSO) - 主模型 PhyCL-Net（time-domain，强制 no-MSPA）
-    python code1/PhyCL-Net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 50 --batch-size 256 --lr 0.004 --warmup-epochs 10 --weighted-loss --amp --use-tfcl
+    python code/PhyCL-Net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 50 --batch-size 256 --lr 0.004 --warmup-epochs 10 --weighted-loss --amp --use-tfcl
 
     # 真实实验 - 断点续训
-    python code1/PhyCL-Net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --resume ./outputs/ckpt_last_seed42.pth
+    python code/PhyCL-Net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --resume ./outputs/ckpt_last_seed42.pth
 
 Model naming notes:
     - --model phycl_net: 论文中的 PhyCL-Net（no-MSPA；`mspa=False` 会被强制写入 ablation 配置）
@@ -60,8 +60,8 @@ from torch.utils.data import Dataset, DataLoader
 from torch import amp as torch_amp
 import re
 
-from models import AMSNetV2
-from models.ams_net_v2 import CrossGatedFusion
+from models import PhyCL_Net
+from models.PhyCL_Net import CrossGatedFusion
 from models.modules.mspa import MultiScaleSpectralPyramidAttention, MultiScaleSpectralPyramid
 from models.modules.dks import DynamicKernelBlock
 from models.modules.spectral import MultiScaleSTFTBlock, WaveletSpectralBlock
@@ -2348,7 +2348,7 @@ def run_one_experiment(config, seed, resume_path=None):
         elif config['model'] == 'resnet':
             model = ResNet1D(in_channels=C, num_classes=config['num_classes'])
         elif config['model'] in ('phycl_net', 'mspa_faa_pdk'):
-            model = AMSNetV2(
+            model = PhyCL_Net(
                 in_channels=C,
                 num_classes=config['num_classes'],
                 proj_dim=config.get('proj_dim', 128),
@@ -2788,9 +2788,9 @@ def main():
     p.add_argument('--adaptive-bands', action='store_true', help="Enable learnable MSPA band edges")
     p.add_argument('--no-adaptive-bands', action='store_false', dest='adaptive_bands', help="Disable learnable MSPA band edges")
     attn_choices = ['none', 'eca', 'cbam', 'ema', 'ca', 'simam', 'aspp', 'mca']
-    p.add_argument('--attn-time', type=str, default='none', choices=attn_choices, help="Attention for AMSNetV2 time branch")
-    p.add_argument('--attn-freq', type=str, default='none', choices=attn_choices, help="Attention for AMSNetV2 frequency branch")
-    p.add_argument('--attn-fuse', type=str, default='none', choices=attn_choices, help="Attention after CrossGatedFusion in AMSNetV2")
+    p.add_argument('--attn-time', type=str, default='none', choices=attn_choices, help="Attention for PhyCL_Net time branch")
+    p.add_argument('--attn-freq', type=str, default='none', choices=attn_choices, help="Attention for PhyCL_Net frequency branch")
+    p.add_argument('--attn-fuse', type=str, default='none', choices=attn_choices, help="Attention after CrossGatedFusion in PhyCL_Net")
     p.add_argument('--attn-lite', type=str, default='none', choices=attn_choices, help="Attention inside LiteAMSNet blocks")
     p.add_argument('--disable-faa-axis-attn', action='store_false', dest='faa_axis_attn', help="Disable cross-axis attention inside FallAwareAttention")
     p.add_argument('--num-workers', type=int, default=0)

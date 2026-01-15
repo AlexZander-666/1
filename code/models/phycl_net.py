@@ -1,14 +1,16 @@
 """
-Paper-facing model name wrappers.
+Paper-facing model name wrapper.
 
-`paper/jec/last2.tex` refers to the main model as PhyCL-Net. Internally the
-implementation is shared with `AMSNetV2` (with `mspa=False` enforced via CLI
-when using `--model phycl_net`).
+The paper refers to the main model as PhyCL-Net and the CLI uses `--model phycl_net`.
+The implementation lives in `code/models/PhyCL_Net.py`.
 """
 
-from .ams_net_v2 import AMSNetV2
+from __future__ import annotations
 
-# Alias for clarity in paper-facing code.
-PhyCLNet = AMSNetV2
+from .PhyCL_Net import PhyCL_Net
 
-__all__ = ["PhyCLNet", "AMSNetV2"]
+# Alias kept for readability in paper-facing code and configs.
+PhyCLNet = PhyCL_Net
+
+__all__ = ["PhyCL_Net", "PhyCLNet"]
+

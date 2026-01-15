@@ -1,5 +1,5 @@
 {
-  "paper_source_of_truth": "paper/jec/last2.tex",
+  "paper_source_of_truth": "docs/main.tex",
   "environment": {
     "conda_env": "SCI666",
     "pip_mirror": "https://pypi.tuna.tsinghua.edu.cn/simple",
@@ -8,7 +8,7 @@
   "dataset": {
     "name": "SisFall",
     "data_root_arg": "--data-root ./data",
-    "notes": "SisFall is publicly available; the dataset itself is not versioned in this repo."
+    "notes": "SisFall is publicly available. In this package the dataset is expected under ./data/SisFall (or download it and place it there)."
   },
   "models": {
     "phycl_net": {
@@ -23,8 +23,8 @@
     }
   },
   "entrypoints": {
-    "main": "code1/PhyCL-Net_experiments.py",
-    "wrapper": "code1/phycl_net_experiments.py"
+    "main": "code/PhyCL-Net_experiments.py",
+    "wrapper": "code/phycl_net_experiments.py"
   },
   "artifacts_expected_per_run_dir": [
     "experiment_config.yaml",
@@ -35,4 +35,3 @@
     "ckpt_best_seed*_loso_SA*.pth"
   ]
 }
-

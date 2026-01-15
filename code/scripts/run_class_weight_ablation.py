@@ -36,7 +36,7 @@ def build_train_cmd(
 ) -> list[str]:
     cmd = [
         sys.executable,
-        "code1/PhyCL-Net_experiments.py",
+        "code/PhyCL-Net_experiments.py",
         "--dataset",
         args.dataset,
         "--data-root",

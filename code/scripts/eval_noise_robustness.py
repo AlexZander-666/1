@@ -32,7 +32,7 @@ from torch.utils.data import DataLoader, Dataset
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from models.ams_net_v2 import AMSNetV2
+from models.PhyCL_Net import PhyCL_Net
 
 logging.basicConfig(
     level=logging.INFO,
@@ -212,9 +212,9 @@ def get_test_loader(
 def load_model(
     checkpoint_path: Path,
     device: torch.device,
-) -> AMSNetV2:
+) -> PhyCL_Net:
     """
-    Load AMSNetV2 model from checkpoint.
+    Load PhyCL_Net model from checkpoint.
 
     Args:
         checkpoint_path: Path to .pth checkpoint
@@ -225,7 +225,7 @@ def load_model(
     """
     logger.info(f"Loading model from: {checkpoint_path}")
 
-    model = AMSNetV2(
+    model = PhyCL_Net(
         in_channels=3,
         num_classes=2,
         ablation={'mspa': True, 'dks': True, 'faa': True},
@@ -679,7 +679,7 @@ def main():
         plot_noise_robustness_curve(
             results,
             plot_path,
-            title='AMSNetV2 Noise Robustness',
+            title='PhyCL-Net Noise Robustness',
         )
 
         logger.info("Demo noise robustness evaluation complete!")
@@ -730,7 +730,7 @@ def main():
     plot_noise_robustness_curve(
         results,
         plot_path,
-        title='AMSNetV2 Noise Robustness',
+        title='PhyCL-Net Noise Robustness',
     )
 
     logger.info("Noise robustness evaluation complete!")
