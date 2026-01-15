@@ -1,4 +1,4 @@
-{
+﻿{
   "experiment": "Multi-Dataset LOSO (SisFall 80% + MobiFall 20%)",
   "seed": 42,
   "n_folds": 12,

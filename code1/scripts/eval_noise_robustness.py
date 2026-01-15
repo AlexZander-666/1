@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 """
-Noise Robustness Evaluation for AMSNetV2 Fall Detection.
+Noise Robustness Evaluation for PhyCL-Net Fall Detection.
 
 This script evaluates model performance under various Gaussian noise levels
 to assess robustness for the paper's Discussion section.
 
 Usage:
     python scripts/eval_noise_robustness.py \
-        --ckpt outputs/amsv2_best.pth \
+        --ckpt outputs/phycl_net/ckpt_best_seed456_loso_SA01.pth \
         --data-root ./data \
         --output-dir ./outputs \
         --figure-dir ./figures
 
-Author: AMSNetV2 Research Team
+Author: PhyCL-Net Research Team
 """
 
 import argparse
@@ -591,14 +591,14 @@ def generate_demo_results(noise_levels: List[float], seed: int = 42) -> List[Dic
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Evaluate AMSNetV2 noise robustness',
+        description='Evaluate PhyCL-Net noise robustness',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
     parser.add_argument(
         '--ckpt',
         type=Path,
-        default=Path('outputs/amsv2_best.pth'),
+        default=Path('outputs/phycl_net/ckpt_best_seed456_loso_SA01.pth'),
         help='Path to model checkpoint'
     )
     parser.add_argument(

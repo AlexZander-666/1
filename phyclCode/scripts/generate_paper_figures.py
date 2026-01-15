@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 """
-Publication-quality figure generation for AMSNetV2 Fall Detection paper.
+Publication-quality figure generation for PhyCL-Net Fall Detection paper.
 
 This script generates:
-1. t-SNE visualization comparing Baseline vs AMSNetV2 feature clustering
+1. t-SNE visualization comparing Baseline vs PhyCL-Net feature clustering
 2. Attention heatmap showing Fall-Aware Attention focus on impact moments
 
 Usage:
     python scripts/generate_paper_figures.py \
         --baseline-ckpt outputs/baseline_best.pth \
-        --amsv2-ckpt outputs/amsv2_best.pth \
+        --phycl-net-ckpt outputs/phycl_net/ckpt_best_seed456_loso_SA01.pth \
         --data-root ./data \
         --output-dir ./figures
 
-Author: AMSNetV2 Research Team
+Author: PhyCL-Net Research Team
 """
 
 import argparse
@@ -270,20 +270,20 @@ def get_features_and_labels(
 def plot_tsne_comparison(
     baseline_features: np.ndarray,
     baseline_labels: np.ndarray,
-    amsv2_features: np.ndarray,
-    amsv2_labels: np.ndarray,
+    phycl_net_features: np.ndarray,
+    phycl_net_labels: np.ndarray,
     output_path: Path,
     perplexity: int = 30,
     random_state: int = 42,
 ):
     """
-    Create side-by-side t-SNE visualization comparing baseline and AMSNetV2.
+    Create side-by-side t-SNE visualization comparing baseline and PhyCL-Net.
 
     Args:
         baseline_features: Feature array from baseline model
         baseline_labels: Labels for baseline
-        amsv2_features: Feature array from AMSNetV2
-        amsv2_labels: Labels for AMSNetV2
+        phycl_net_features: Feature array from the PhyCL-Net backbone
+        phycl_net_labels: Labels for PhyCL-Net
         output_path: Path to save figure
         perplexity: t-SNE perplexity parameter
         random_state: Random seed for reproducibility
@@ -315,7 +315,7 @@ def plot_tsne_comparison(
         )
 
     baseline_2d = tsne.fit_transform(baseline_features)
-    amsv2_2d = tsne.fit_transform(amsv2_features)
+    phycl_net_2d = tsne.fit_transform(phycl_net_features)
 
     # Define colors
     colors = {0: '#3498db', 1: '#e74c3c'}  # Blue for ADL, Red for Fall
@@ -346,10 +346,10 @@ def plot_tsne_comparison(
     # Plot AMSNetV2
     ax2 = axes[1]
     for label in [0, 1]:
-        mask = amsv2_labels == label
+        mask = phycl_net_labels == label
         ax2.scatter(
-            amsv2_2d[mask, 0],
-            amsv2_2d[mask, 1],
+            phycl_net_2d[mask, 0],
+            phycl_net_2d[mask, 1],
             c=colors[label],
             label=class_names[label],
             alpha=0.6,
@@ -359,13 +359,13 @@ def plot_tsne_comparison(
         )
     ax2.set_xlabel('t-SNE Dimension 1')
     ax2.set_ylabel('t-SNE Dimension 2')
-    ax2.set_title('(b) AMSNetV2 (Ours)', fontweight='bold')
+    ax2.set_title('(b) PhyCL-Net (Ours)', fontweight='bold')
     ax2.legend(loc='upper right', markerscale=1.5)
 
     # Calculate and annotate cluster metrics
     for ax, features_2d, labels, title in [
         (ax1, baseline_2d, baseline_labels, 'Baseline'),
-        (ax2, amsv2_2d, amsv2_labels, 'AMSNetV2'),
+        (ax2, phycl_net_2d, phycl_net_labels, 'PhyCL-Net'),
     ]:
         # Compute inter-class and intra-class distances
         adl_mask = labels == 0
@@ -925,7 +925,7 @@ def main():
     )
 
     parser.add_argument('--baseline-ckpt', type=Path, help='Path to baseline model checkpoint')
-    parser.add_argument('--amsv2-ckpt', type=Path, help='Path to AMSNetV2 checkpoint')
+    parser.add_argument('--phycl-net-ckpt', dest='phycl_net_ckpt', type=Path, help='Path to PhyCL-Net checkpoint')
     parser.add_argument('--data-root', type=Path, default=Path('./data'), help='Dataset root directory')
     parser.add_argument('--output-dir', type=Path, default=Path('./figures'), help='Output directory')
     parser.add_argument('--device', type=str, default='cuda' if torch.cuda.is_available() else 'cpu')
@@ -959,15 +959,15 @@ def main():
         baseline_features[baseline_labels == 1] += 0.5
 
         # AMSNetV2: features with good separation
-        amsv2_features = np.random.randn(n_samples, 128)
-        amsv2_labels = np.random.randint(0, 2, n_samples)
+        phycl_net_features = np.random.randn(n_samples, 128)
+        phycl_net_labels = np.random.randint(0, 2, n_samples)
         # Add large class-dependent shift
-        amsv2_features[amsv2_labels == 1] += 3.0
+        phycl_net_features[phycl_net_labels == 1] += 3.0
 
         # Plot t-SNE comparison
         plot_tsne_comparison(
             baseline_features, baseline_labels,
-            amsv2_features, amsv2_labels,
+            phycl_net_features, phycl_net_labels,
             args.output_dir / 'tsne_comparison',
             perplexity=args.perplexity,
             random_state=args.seed,
@@ -995,12 +995,12 @@ def main():
         return
 
     # Real data mode
-    if args.amsv2_ckpt is None:
-        logger.error("Please provide --amsv2-ckpt or use --demo for synthetic data")
+    if args.phycl_net_ckpt is None:
+        logger.error("Please provide --phycl-net-ckpt or use --demo for synthetic data")
         return
 
     # Load model
-    amsv2_model = load_model(args.amsv2_ckpt, device)
+    phycl_net_model = load_model(args.phycl_net_ckpt, device)
 
     # Load baseline if provided
     if args.baseline_ckpt:
@@ -1028,14 +1028,14 @@ def main():
         )
 
         logger.info("Extracting features from AMSNetV2...")
-        amsv2_features, amsv2_labels = get_features_and_labels(
-            amsv2_model, loader, device, max_samples=args.max_samples
+        phycl_net_features, phycl_net_labels = get_features_and_labels(
+            phycl_net_model, loader, device, max_samples=args.max_samples
         )
 
         # Plot t-SNE
         plot_tsne_comparison(
             baseline_features, baseline_labels,
-            amsv2_features, amsv2_labels,
+            phycl_net_features, phycl_net_labels,
             args.output_dir / 'tsne_comparison',
             perplexity=args.perplexity,
             random_state=args.seed,
@@ -1048,7 +1048,7 @@ def main():
                 break
 
         # Extract attention
-        attn_extractor = AttentionExtractor(amsv2_model)
+        attn_extractor = AttentionExtractor(phycl_net_model)
         attention = attn_extractor.get_attention_weights(sample)
 
         if attention is not None:
@@ -1072,7 +1072,7 @@ def main():
         signal = generate_demo_fall_signal()
         sample = torch.from_numpy(signal).unsqueeze(0).to(device)
 
-        attn_extractor = AttentionExtractor(amsv2_model)
+        attn_extractor = AttentionExtractor(phycl_net_model)
         attention = attn_extractor.get_attention_weights(sample)
 
         if attention is not None:

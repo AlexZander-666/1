@@ -1,11 +1,11 @@
 @echo off
 REM ============================================
-REM RTX 4090 极致训练脚本 - AMSNetV2
+REM RTX 4090 极致训练脚本 - PhyCL-Net
 REM 优化参数: batch-size=64, num-workers=8, AMP开启
 REM ============================================
 
 echo ===========================================
-echo RTX 4090 AMSNetV2 Training Script
+echo RTX 4090 PhyCL-Net Training Script
 echo ===========================================
 
 REM 设置Python环境 (如果需要)
@@ -34,7 +34,7 @@ echo [MODE] Dry Run - Environment Validation
 echo.
 python phycl_net_experiments.py ^
     --dataset dryrun ^
-    --model amsv2 ^
+    --model phycl_net ^
     --batch-size 64 ^
     --epochs 2 ^
     --amp ^
@@ -50,7 +50,7 @@ echo.
 python phycl_net_experiments.py ^
     --dataset sisfall ^
     --data-root ./data ^
-    --model amsv2 ^
+    --model phycl_net ^
     --eval-mode loso ^
     --loso-max-folds 5 ^
     --seeds 42 123 ^
@@ -72,7 +72,7 @@ echo.
 python phycl_net_experiments.py ^
     --dataset sisfall ^
     --data-root ./data ^
-    --model amsv2 ^
+    --model phycl_net ^
     --eval-mode loso ^
     --seeds 42 123 456 789 1024 ^
     --epochs 100 ^
@@ -92,37 +92,37 @@ echo [MODE] Ablation Study (7 configurations)
 echo.
 
 echo Running: Full Model...
-python phycl_net_experiments.py --dataset sisfall --data-root ./data --model amsv2 ^
+python phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net ^
     --eval-mode loso --seeds 42 123 456 --epochs 100 --batch-size 64 --num-workers 8 --amp --use-tfcl ^
     --out-dir ./outputs/ablation/full
 
 echo Running: w/o DKS...
-python phycl_net_experiments.py --dataset sisfall --data-root ./data --model amsv2 ^
+python phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net ^
     --eval-mode loso --seeds 42 123 456 --epochs 100 --batch-size 64 --num-workers 8 --amp --use-tfcl ^
     --ablation dks=False --out-dir ./outputs/ablation/no_dks
 
 echo Running: w/o MSPA...
-python phycl_net_experiments.py --dataset sisfall --data-root ./data --model amsv2 ^
+python phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net ^
     --eval-mode loso --seeds 42 123 456 --epochs 100 --batch-size 64 --num-workers 8 --amp --use-tfcl ^
     --ablation mspa=False --out-dir ./outputs/ablation/no_mspa
 
 echo Running: w/o FAA...
-python phycl_net_experiments.py --dataset sisfall --data-root ./data --model amsv2 ^
+python phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net ^
     --eval-mode loso --seeds 42 123 456 --epochs 100 --batch-size 64 --num-workers 8 --amp --use-tfcl ^
     --ablation faa=False --out-dir ./outputs/ablation/no_faa
 
 echo Running: w/o TFCL...
-python phycl_net_experiments.py --dataset sisfall --data-root ./data --model amsv2 ^
+python phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net ^
     --eval-mode loso --seeds 42 123 456 --epochs 100 --batch-size 64 --num-workers 8 --amp ^
     --out-dir ./outputs/ablation/no_tfcl
 
 echo Running: Time-only...
-python phycl_net_experiments.py --dataset sisfall --data-root ./data --model amsv2 ^
+python phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net ^
     --eval-mode loso --seeds 42 123 456 --epochs 100 --batch-size 64 --num-workers 8 --amp ^
     --ablation time_only --out-dir ./outputs/ablation/time_only
 
 echo Running: Freq-only...
-python phycl_net_experiments.py --dataset sisfall --data-root ./data --model amsv2 ^
+python phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net ^
     --eval-mode loso --seeds 42 123 456 --epochs 100 --batch-size 64 --num-workers 8 --amp ^
     --ablation freq_only --out-dir ./outputs/ablation/freq_only
 
@@ -167,8 +167,8 @@ echo.
 echo [MODE] Efficiency Profiling
 echo.
 
-echo Profiling: AMSNetV2...
-python phycl_net_experiments.py --dataset dryrun --model amsv2 --profile --epochs 1 --batch-size 1
+echo Profiling: PhyCL-Net...
+python phycl_net_experiments.py --dataset dryrun --model phycl_net --profile --epochs 1 --batch-size 1
 
 echo Profiling: LSTM...
 python phycl_net_experiments.py --dataset dryrun --model lstm --profile --epochs 1 --batch-size 1

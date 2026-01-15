@@ -36,13 +36,13 @@ def build_train_cmd(
 ) -> list[str]:
     cmd = [
         sys.executable,
-        "code1/phycl_net_experiments.py",
+        "code1/PhyCL-Net_experiments.py",
         "--dataset",
         args.dataset,
         "--data-root",
         str(args.data_root),
         "--model",
-        "amsv2",
+        "phycl_net",
         "--eval-mode",
         args.eval_mode,
         "--epochs",
@@ -75,7 +75,7 @@ def build_train_cmd(
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Run class weighting ablation for Lite-AMSNet.",
+        description="Run class weighting ablation for PhyCL-Net.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument("--dataset", default="sisfall")

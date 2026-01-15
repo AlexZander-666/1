@@ -1,0 +1,38 @@
+{
+  "paper_source_of_truth": "paper/jec/last2.tex",
+  "environment": {
+    "conda_env": "SCI666",
+    "pip_mirror": "https://pypi.tuna.tsinghua.edu.cn/simple",
+    "requires_gpu": true
+  },
+  "dataset": {
+    "name": "SisFall",
+    "data_root_arg": "--data-root ./data",
+    "notes": "SisFall is publicly available; the dataset itself is not versioned in this repo."
+  },
+  "models": {
+    "phycl_net": {
+      "cli_model_name": "phycl_net",
+      "outputs_dir": "outputs/phycl_net",
+      "seeds_reported_in_paper": [42, 123, 456, 789, 1024]
+    },
+    "mspa_faa_pdk": {
+      "cli_model_name": "mspa_faa_pdk",
+      "outputs_dir": "outputs/mspa_faa_pdk_baseline",
+      "seeds_reported_in_paper": [42, 123]
+    }
+  },
+  "entrypoints": {
+    "main": "code1/PhyCL-Net_experiments.py",
+    "wrapper": "code1/phycl_net_experiments.py"
+  },
+  "artifacts_expected_per_run_dir": [
+    "experiment_config.yaml",
+    "experiment.log",
+    "summary_results.json",
+    "loso_results_seed*.json",
+    "split_stats_seed*.json",
+    "ckpt_best_seed*_loso_SA*.pth"
+  ]
+}
+

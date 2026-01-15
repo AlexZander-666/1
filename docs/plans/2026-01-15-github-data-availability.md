@@ -65,7 +65,8 @@
 
 ### D. 复现代码（必须：能从 outputs 复核指标/曲线）
 本仓库实际主代码目录为 `code1/`（README/AGENTS.md 里写的 `code/` 在当前工作区不存在）：
-- `code1/phycl_net_experiments.py`（推荐入口）
+- `code1/PhyCL-Net_experiments.py`（主实验入口，论文命名）
+- `code1/phycl_net_experiments.py`（薄包装入口：转调 `code1/PhyCL-Net_experiments.py`，避免 hyphen 文件名无法作为 Python module import）
 - `code1/models/`、`code1/losses/`
 - `code1/scripts/`（至少包括：`eval_noise_robustness.py`、`fine_grained_analysis.py`、`paired_ttest_from_markdown.py`、`train_baselines.py`、`pack_sci_submission.py`、`eval_lite_amsnet_noise.py`）
 

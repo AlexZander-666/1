@@ -1,4 +1,4 @@
-args:
+﻿args:
   ablation: time_only
   accum_steps: 1
   adaptive_bands: true
@@ -39,7 +39,7 @@ args:
   lr: 0.0016
   lstm_hidden: 128
   min_patience: 5
-  model: amsv2
+  model: phycl_net
   n_blocks: 4
   noise_std: 0.05
   num_bands: 4

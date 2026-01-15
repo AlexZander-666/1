@@ -5,7 +5,6 @@ This repository treats `paper/jec/last2.tex` as the single source of truth. This
 ## Model Naming (Paper ↔ Code)
 - **PhyCL-Net (ours)**: `--model phycl_net` (forces `mspa=False`)
 - **MSPA-FAA-PDK (spectral baseline)**: `--model mspa_faa_pdk` (forces `mspa=True`)
-- Legacy internal name: `--model amsv2` (kept for backward compatibility with older logs/configs; avoid for paper-facing commands)
 
 ## Paper Figure Files
 `paper/jec/last2.tex` references the following paths, all of which are present:

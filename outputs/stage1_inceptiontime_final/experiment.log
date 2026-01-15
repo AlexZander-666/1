@@ -1,4 +1,4 @@
-2025-12-08 09:43:18,135 - INFO - Logging initialized. Output directory: ./outputs/stage1_inceptiontime_final
+ï»¿2025-12-08 09:43:18,135 - INFO - Logging initialized. Output directory: ./outputs/stage1_inceptiontime_final
 2025-12-08 09:43:20,528 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/stage1_inceptiontime_final', 'model': 'inceptiontime', 'epochs': 50, 'batch_size': 96, 'lr': 0.0025, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': False, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
 2025-12-08 09:43:20,531 - INFO - Seed set to 42 (deterministic=False)
 2025-12-08 09:43:20,574 - INFO - Running LOSO across 12 subjects.
@@ -9,25 +9,25 @@
 2025-12-08 09:44:49,933 - INFO - Computed class weights: [0.8551977 1.2038333]
 2025-12-08 09:45:29,471 - ERROR - Run failed for seed 42: The size of tensor a (3) must match the size of tensor b (32) at non-singleton dimension 1
 2025-12-08 09:45:29,527 - ERROR - Traceback (most recent call last):
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 2686, in main
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2686, in main
     res = run_one_experiment(config, s, args.resume)
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 2488, in run_one_experiment
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2488, in run_one_experiment
     res = train_eval_split(train_ds, val_ds, test_ds, split_tag, None)
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 2301, in train_eval_split
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2301, in train_eval_split
     loss, loss_parts = train_epoch(model, train_dl, optimizer, device, criterion, scaler, config['accum_steps'])
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 1134, in train_epoch
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 1134, in train_epoch
     logits, z_time, z_freq = unpack_model_output(model(x))
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
     return forward_call(*args, **kwargs)
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 777, in forward
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 777, in forward
     x = b(x)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
     return forward_call(*args, **kwargs)
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 763, in forward
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 763, in forward
     return x + self.res_scale * out
 RuntimeError: The size of tensor a (3) must match the size of tensor b (32) at non-singleton dimension 1
 
@@ -40,25 +40,25 @@ RuntimeError: The size of tensor a (3) must match the size of tensor b (32) at n
 2025-12-08 09:46:54,907 - INFO - Computed class weights: [0.8551977 1.2038333]
 2025-12-08 09:47:31,776 - ERROR - Run failed for seed 123: The size of tensor a (3) must match the size of tensor b (32) at non-singleton dimension 1
 2025-12-08 09:47:31,777 - ERROR - Traceback (most recent call last):
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 2686, in main
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2686, in main
     res = run_one_experiment(config, s, args.resume)
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 2488, in run_one_experiment
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2488, in run_one_experiment
     res = train_eval_split(train_ds, val_ds, test_ds, split_tag, None)
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 2301, in train_eval_split
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2301, in train_eval_split
     loss, loss_parts = train_epoch(model, train_dl, optimizer, device, criterion, scaler, config['accum_steps'])
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 1134, in train_epoch
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 1134, in train_epoch
     logits, z_time, z_freq = unpack_model_output(model(x))
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
     return forward_call(*args, **kwargs)
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 777, in forward
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 777, in forward
     x = b(x)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
     return forward_call(*args, **kwargs)
-  File "d:\666\´ó´´\DMC_Net_experiments.py", line 763, in forward
+  File "d:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 763, in forward
     return x + self.res_scale * out
 RuntimeError: The size of tensor a (3) must match the size of tensor b (32) at non-singleton dimension 1
 

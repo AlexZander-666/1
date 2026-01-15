@@ -1,8 +1,8 @@
-2025-12-12 18:13:43,015 - INFO - Logging initialized. Output directory: ./outputs/ablation_time_only
-2025-12-12 18:13:51,504 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_time_only', 'model': 'amsv2', 'epochs': 50, 'batch_size': 256, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
+ï»¿2025-12-12 18:13:43,015 - INFO - Logging initialized. Output directory: ./outputs/ablation_time_only
+2025-12-12 18:13:51,504 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_time_only', 'model': 'phycl_net', 'epochs': 50, 'batch_size': 256, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
 2025-12-12 18:13:51,509 - INFO - Seed set to 42 (deterministic=False)
 2025-12-12 18:13:51,534 - INFO - Running LOSO across 12 subjects.
-2025-12-12 18:14:51,582 - INFO - [loso_SA01] Model: amsv2
+2025-12-12 18:14:51,582 - INFO - [loso_SA01] Model: phycl_net
 2025-12-12 18:14:51,582 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-12 18:14:51,582 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-12 18:14:55,204 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -98,7 +98,7 @@
 2025-12-12 18:54:27,882 - DEBUG - Manual metrics - Acc: 0.9851, Macro F1: 0.9845, Fall F1: 0.9817
 2025-12-12 18:54:27,887 - INFO - [loso_SA01] Seed 42 Test Results: {'accuracy': 0.985066371681416, 'specificity': 0.9999999999999991, 'fall_f1': 0.981670061099295, 'sensitivity': 0.9639999999999986, 'macro_f1': 0.9845354505213989, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9818350166906851, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 18:54:27,895 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA01.csv
-2025-12-12 18:55:29,356 - INFO - [loso_SA02] Model: amsv2
+2025-12-12 18:55:29,356 - INFO - [loso_SA02] Model: phycl_net
 2025-12-12 18:55:29,356 - INFO - [loso_SA02]   Total params: 1.65M
 2025-12-12 18:55:29,357 - INFO - [loso_SA02]   Trainable params: 1.65M
 2025-12-12 18:55:29,360 - INFO - [loso_SA02] Using weighted CrossEntropyLoss based on training data balance.
@@ -132,10 +132,10 @@
 2025-12-12 19:08:56,900 - DEBUG - Manual metrics - Acc: 0.9652, Macro F1: 0.9638, Fall F1: 0.9569
 2025-12-12 19:08:57,682 - INFO - [loso_SA02] Seed 42 | Ep 7: Loss=0.1491 (ce=0.0198 tfcl_layer0=1.0802 tfcl_cross0->1=1.2657 tfcl_layer1=1.0342 tfcl_cross1->2=1.2606 tfcl_layer2=0.8744 tfcl_cross2->3=1.0703 tfcl_layer3=0.8811 tfcl_cross3->4=1.0459 tfcl_layer4=0.6853 tfcl_cross4->5=0.7068 tfcl_layer5=0.6693 tfcl_sup=8.3798 tfcl_total=1.2779 center=0.1517) Val_F1=0.9638 Best_F1=0.9746
 2025-12-12 21:51:11,989 - INFO - Logging initialized. Output directory: ./outputs/ablation_time_only
-2025-12-12 21:51:20,864 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_time_only', 'model': 'amsv2', 'epochs': 50, 'batch_size': 256, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': './outputs/ablation_time_only'}
+2025-12-12 21:51:20,864 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_time_only', 'model': 'phycl_net', 'epochs': 50, 'batch_size': 256, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': './outputs/ablation_time_only'}
 2025-12-12 21:51:20,927 - INFO - Seed set to 42 (deterministic=False)
 2025-12-12 21:51:20,986 - INFO - Running LOSO across 12 subjects.
-2025-12-12 21:53:04,692 - INFO - [loso_SA01] Model: amsv2
+2025-12-12 21:53:04,692 - INFO - [loso_SA01] Model: phycl_net
 2025-12-12 21:53:04,692 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-12 21:53:04,692 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-12 21:53:08,780 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -145,13 +145,13 @@
 2025-12-12 21:53:10,097 - INFO - Resumed from epoch 21. Best F1 so far: 0.9683
 2025-12-12 21:54:03,187 - ERROR - Run failed for seed 42: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 has a total capacity of 15.99 GiB of which 9.62 GiB is free. Of the allocated memory 4.82 GiB is allocated by PyTorch, and 182.21 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 2025-12-12 21:54:03,280 - ERROR - Traceback (most recent call last):
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 2715, in main
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2715, in main
     res = run_one_experiment(config, s, args.resume)
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 2517, in run_one_experiment
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2517, in run_one_experiment
     res = train_eval_split(train_ds, val_ds, test_ds, split_tag, resume_path_split)
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 2328, in train_eval_split
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2328, in train_eval_split
     loss, loss_parts = train_epoch(model, train_dl, optimizer, device, criterion, scaler, config['accum_steps'])
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 1164, in train_epoch
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 1164, in train_epoch
     scaler.scale(loss).backward()
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\_tensor.py", line 581, in backward
     torch.autograd.backward(
@@ -164,7 +164,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-12 21:54:03,429 - INFO - Seed set to 123 (deterministic=False)
 2025-12-12 21:54:03,456 - INFO - Running LOSO across 12 subjects.
 2025-12-12 21:55:10,841 - WARNING - [loso_SA01] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-12 21:55:11,081 - INFO - [loso_SA01] Model: amsv2
+2025-12-12 21:55:11,081 - INFO - [loso_SA01] Model: phycl_net
 2025-12-12 21:55:11,081 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-12 21:55:11,081 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-12 21:55:11,086 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -175,31 +175,31 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-12 21:57:07,497 - INFO - [loso_SA01] Seed 123 | Ep 1: Loss=1.0670 (ce=0.5318 tfcl_layer0=4.6211 tfcl_cross0->1=5.0975 tfcl_layer1=4.6630 tfcl_cross1->2=4.5529 tfcl_layer2=3.7906 tfcl_cross2->3=4.6437 tfcl_layer3=3.9539 tfcl_cross3->4=4.0651 tfcl_layer4=3.0402 tfcl_cross4->5=3.8166 tfcl_layer5=3.3022 tfcl_sup=8.1815 tfcl_total=5.1403 center=2.1112) Val_F1=0.7701 Best_F1=0.7701
 2025-12-12 21:57:38,100 - ERROR - Run failed for seed 123: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 has a total capacity of 15.99 GiB of which 9.95 GiB is free. Of the allocated memory 4.48 GiB is allocated by PyTorch, and 189.30 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 2025-12-12 21:57:38,165 - ERROR - Traceback (most recent call last):
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 2715, in main
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2715, in main
     res = run_one_experiment(config, s, args.resume)
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 2517, in run_one_experiment
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2517, in run_one_experiment
     res = train_eval_split(train_ds, val_ds, test_ds, split_tag, resume_path_split)
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 2328, in train_eval_split
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2328, in train_eval_split
     loss, loss_parts = train_epoch(model, train_dl, optimizer, device, criterion, scaler, config['accum_steps'])
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 1159, in train_epoch
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 1159, in train_epoch
     logits, z_time, z_freq = unpack_model_output(model(x))
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
     return forward_call(*args, **kwargs)
-  File "D:\666\´ó´´\models\ams_net_v2.py", line 376, in forward
+  File "D:\666\ï¿½ï¿½\models\ams_net_v2.py", line 376, in forward
     x, t_feat, f_feat = block(x)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
     return forward_call(*args, **kwargs)
-  File "D:\666\´ó´´\models\ams_net_v2.py", line 207, in forward
+  File "D:\666\ï¿½ï¿½\models\ams_net_v2.py", line 207, in forward
     f_feat = self.faa(f_feat)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
     return forward_call(*args, **kwargs)
-  File "D:\666\´ó´´\models\modules\faa.py", line 65, in forward
+  File "D:\666\ï¿½ï¿½\models\modules\faa.py", line 65, in forward
     attn = self.gate(local + context)
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
@@ -217,10 +217,10 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 
 2025-12-12 21:57:38,218 - INFO - Final Summary: {}
 2025-12-12 23:40:14,530 - INFO - Logging initialized. Output directory: ./outputs/ablation_time_only
-2025-12-12 23:40:16,768 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_time_only', 'model': 'amsv2', 'epochs': 50, 'batch_size': 128, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': './outputs/ablation_time_only'}
+2025-12-12 23:40:16,768 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_time_only', 'model': 'phycl_net', 'epochs': 50, 'batch_size': 128, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': './outputs/ablation_time_only'}
 2025-12-12 23:40:16,770 - INFO - Seed set to 42 (deterministic=False)
 2025-12-12 23:40:16,796 - INFO - Running LOSO across 12 subjects.
-2025-12-12 23:41:22,793 - INFO - [loso_SA01] Model: amsv2
+2025-12-12 23:41:22,793 - INFO - [loso_SA01] Model: phycl_net
 2025-12-12 23:41:22,793 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-12 23:41:22,793 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-12 23:41:26,415 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -237,10 +237,10 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-12 23:46:32,540 - DEBUG - Manual metrics - Acc: 0.9648, Macro F1: 0.9638, Fall F1: 0.9579
 2025-12-12 23:46:33,015 - INFO - [loso_SA01] Seed 42 | Ep 23: Loss=0.0632 (ce=0.0074 tfcl_layer0=0.4122 tfcl_cross0->1=0.4777 tfcl_layer1=0.4089 tfcl_cross1->2=0.4848 tfcl_layer2=0.3128 tfcl_cross2->3=0.3628 tfcl_layer3=0.3055 tfcl_cross3->4=0.3491 tfcl_layer4=0.2435 tfcl_cross4->5=0.2557 tfcl_layer5=0.3609 tfcl_sup=6.6877 tfcl_total=0.5486 center=0.0899) Val_F1=0.9638 Best_F1=0.9683
 2025-12-13 00:19:14,084 - INFO - Logging initialized. Output directory: ./outputs/ablation_time_only
-2025-12-13 00:19:16,292 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_time_only', 'model': 'amsv2', 'epochs': 50, 'batch_size': 128, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': './outputs/ablation_time_only'}
+2025-12-13 00:19:16,292 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_time_only', 'model': 'phycl_net', 'epochs': 50, 'batch_size': 128, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': './outputs/ablation_time_only'}
 2025-12-13 00:19:16,296 - INFO - Seed set to 42 (deterministic=False)
 2025-12-13 00:19:16,321 - INFO - Running LOSO across 12 subjects.
-2025-12-13 00:20:20,636 - INFO - [loso_SA01] Model: amsv2
+2025-12-13 00:20:20,636 - INFO - [loso_SA01] Model: phycl_net
 2025-12-13 00:20:20,637 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-13 00:20:20,637 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-13 00:20:24,206 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -362,7 +362,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 01:16:46,447 - DEBUG - Manual metrics - Acc: 0.9851, Macro F1: 0.9845, Fall F1: 0.9817
 2025-12-13 01:16:46,452 - INFO - [loso_SA01] Seed 42 Test Results: {'accuracy': 0.985066371681416, 'specificity': 0.9999999999999991, 'fall_f1': 0.981670061099295, 'sensitivity': 0.9639999999999986, 'macro_f1': 0.9845354505213989, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9818350166906851, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 01:16:46,459 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA01.csv
-2025-12-13 01:17:41,966 - INFO - [loso_SA02] Model: amsv2
+2025-12-13 01:17:41,966 - INFO - [loso_SA02] Model: phycl_net
 2025-12-13 01:17:41,966 - INFO - [loso_SA02]   Total params: 1.65M
 2025-12-13 01:17:41,966 - INFO - [loso_SA02]   Trainable params: 1.65M
 2025-12-13 01:17:41,970 - INFO - [loso_SA02] Using weighted CrossEntropyLoss based on training data balance.
@@ -442,7 +442,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 01:50:17,587 - INFO - [loso_SA02] Seed 42 Test Results: {'accuracy': 0.9308628318584071, 'specificity': 0.9187145557655947, 'fall_f1': 0.9191984486097126, 'sensitivity': 0.9479999999999987, 'macro_f1': 0.9293913944351038, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9332424116304309, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 01:50:17,594 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA02.csv
 2025-12-13 01:51:13,767 - WARNING - [loso_SA04] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 42; starting fresh.
-2025-12-13 01:51:13,949 - INFO - [loso_SA04] Model: amsv2
+2025-12-13 01:51:13,949 - INFO - [loso_SA04] Model: phycl_net
 2025-12-13 01:51:13,949 - INFO - [loso_SA04]   Total params: 1.65M
 2025-12-13 01:51:13,949 - INFO - [loso_SA04]   Trainable params: 1.65M
 2025-12-13 01:51:13,953 - INFO - [loso_SA04] Using weighted CrossEntropyLoss based on training data balance.
@@ -503,7 +503,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 02:15:06,748 - INFO - [loso_SA04] Seed 42 Test Results: {'accuracy': 0.9966814159292036, 'specificity': 0.9971644612476362, 'fall_f1': 0.9959999999994986, 'sensitivity': 0.9959999999999987, 'macro_f1': 0.9965822306233174, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9965820605462675, 'detection_latency_ms': 5120.0, 'detection_latency_median_ms': 5120.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 5120.0, 'detection_latency_max_ms': 5120.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 02:15:06,756 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA04.csv
 2025-12-13 02:16:03,352 - WARNING - [loso_SA05] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 42; starting fresh.
-2025-12-13 02:16:03,532 - INFO - [loso_SA05] Model: amsv2
+2025-12-13 02:16:03,532 - INFO - [loso_SA05] Model: phycl_net
 2025-12-13 02:16:03,532 - INFO - [loso_SA05]   Total params: 1.65M
 2025-12-13 02:16:03,533 - INFO - [loso_SA05]   Trainable params: 1.65M
 2025-12-13 02:16:03,536 - INFO - [loso_SA05] Using weighted CrossEntropyLoss based on training data balance.
@@ -616,7 +616,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 03:05:09,501 - INFO - [loso_SA05] Seed 42 Test Results: {'accuracy': 0.9911504424778761, 'specificity': 0.9962192816635153, 'fall_f1': 0.9892761394096863, 'sensitivity': 0.9839999999999987, 'macro_f1': 0.9908715913618431, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9900907903606101, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 03:05:09,511 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA05.csv
 2025-12-13 03:06:22,977 - WARNING - [loso_SA06] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 42; starting fresh.
-2025-12-13 03:06:23,164 - INFO - [loso_SA06] Model: amsv2
+2025-12-13 03:06:23,164 - INFO - [loso_SA06] Model: phycl_net
 2025-12-13 03:06:23,164 - INFO - [loso_SA06]   Total params: 1.65M
 2025-12-13 03:06:23,164 - INFO - [loso_SA06]   Trainable params: 1.65M
 2025-12-13 03:06:23,168 - INFO - [loso_SA06] Using weighted CrossEntropyLoss based on training data balance.
@@ -737,7 +737,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 03:59:25,071 - INFO - [loso_SA06] Seed 42 Test Results: {'accuracy': 0.9917035398230089, 'specificity': 0.9943289224952733, 'fall_f1': 0.9899799599193384, 'sensitivity': 0.9879999999999987, 'macro_f1': 0.9914505745795226, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9911594096941867, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 03:59:25,079 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA06.csv
 2025-12-13 04:00:21,728 - WARNING - [loso_SA09] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 42; starting fresh.
-2025-12-13 04:00:21,916 - INFO - [loso_SA09] Model: amsv2
+2025-12-13 04:00:21,916 - INFO - [loso_SA09] Model: phycl_net
 2025-12-13 04:00:21,916 - INFO - [loso_SA09]   Total params: 1.65M
 2025-12-13 04:00:21,916 - INFO - [loso_SA09]   Trainable params: 1.65M
 2025-12-13 04:00:21,919 - INFO - [loso_SA09] Using weighted CrossEntropyLoss based on training data balance.
@@ -806,7 +806,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 04:28:04,229 - INFO - [loso_SA09] Seed 42 Test Results: {'accuracy': 0.9977876106194691, 'specificity': 0.9981096408317571, 'fall_f1': 0.9973333333328319, 'sensitivity': 0.997333333333332, 'macro_f1': 0.9977214870820446, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.997721411578839, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 04:28:04,237 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA09.csv
 2025-12-13 04:29:00,942 - WARNING - [loso_SA10] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 42; starting fresh.
-2025-12-13 04:29:01,131 - INFO - [loso_SA10] Model: amsv2
+2025-12-13 04:29:01,131 - INFO - [loso_SA10] Model: phycl_net
 2025-12-13 04:29:01,131 - INFO - [loso_SA10]   Total params: 1.65M
 2025-12-13 04:29:01,131 - INFO - [loso_SA10]   Trainable params: 1.65M
 2025-12-13 04:29:01,135 - INFO - [loso_SA10] Using weighted CrossEntropyLoss based on training data balance.
@@ -951,7 +951,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 05:33:37,711 - INFO - [loso_SA10] Seed 42 Test Results: {'accuracy': 0.9966814159292036, 'specificity': 0.9962192816635153, 'fall_f1': 0.9960053262311896, 'sensitivity': 0.997333333333332, 'macro_f1': 0.9965835524247104, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9967761518577836, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 05:33:37,718 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA10.csv
 2025-12-13 05:34:34,669 - WARNING - [loso_SA11] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 42; starting fresh.
-2025-12-13 05:34:35,064 - INFO - [loso_SA11] Model: amsv2
+2025-12-13 05:34:35,064 - INFO - [loso_SA11] Model: phycl_net
 2025-12-13 05:34:35,065 - INFO - [loso_SA11]   Total params: 1.65M
 2025-12-13 05:34:35,065 - INFO - [loso_SA11]   Trainable params: 1.65M
 2025-12-13 05:34:35,068 - INFO - [loso_SA11] Using weighted CrossEntropyLoss based on training data balance.
@@ -1032,7 +1032,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 06:08:07,922 - INFO - [loso_SA11] Seed 42 Test Results: {'accuracy': 0.9546460176991151, 'specificity': 0.9461247637051031, 'fall_f1': 0.9464751958219533, 'sensitivity': 0.9666666666666653, 'macro_f1': 0.9535638934961389, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9563405625516459, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 06:08:07,929 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA11.csv
 2025-12-13 06:09:04,718 - WARNING - [loso_SA17] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 42; starting fresh.
-2025-12-13 06:09:04,901 - INFO - [loso_SA17] Model: amsv2
+2025-12-13 06:09:04,901 - INFO - [loso_SA17] Model: phycl_net
 2025-12-13 06:09:04,902 - INFO - [loso_SA17]   Total params: 1.65M
 2025-12-13 06:09:04,902 - INFO - [loso_SA17]   Trainable params: 1.65M
 2025-12-13 06:09:04,905 - INFO - [loso_SA17] Using weighted CrossEntropyLoss based on training data balance.
@@ -1113,7 +1113,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 06:42:40,634 - INFO - [loso_SA17] Seed 42 Test Results: {'accuracy': 0.9899441340782122, 'specificity': 0.9971153846153837, 'fall_f1': 0.9879032258059502, 'sensitivity': 0.9799999999999986, 'macro_f1': 0.9896495096522466, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9885206507317259, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 06:42:40,644 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA17.csv
 2025-12-13 06:43:37,922 - WARNING - [loso_SA18] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 42; starting fresh.
-2025-12-13 06:43:38,110 - INFO - [loso_SA18] Model: amsv2
+2025-12-13 06:43:38,110 - INFO - [loso_SA18] Model: phycl_net
 2025-12-13 06:43:38,111 - INFO - [loso_SA18]   Total params: 1.65M
 2025-12-13 06:43:38,111 - INFO - [loso_SA18]   Trainable params: 1.65M
 2025-12-13 06:43:38,114 - INFO - [loso_SA18] Using weighted CrossEntropyLoss based on training data balance.
@@ -1198,7 +1198,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 07:19:10,745 - INFO - [loso_SA18] Seed 42 Test Results: {'accuracy': 0.9939159292035398, 'specificity': 0.9933837429111523, 'fall_f1': 0.9926813040580481, 'sensitivity': 0.9946666666666653, 'macro_f1': 0.9937377178120202, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9940249978155938, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 07:19:10,753 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA18.csv
 2025-12-13 07:20:07,123 - WARNING - [loso_SA19] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 42; starting fresh.
-2025-12-13 07:20:07,315 - INFO - [loso_SA19] Model: amsv2
+2025-12-13 07:20:07,315 - INFO - [loso_SA19] Model: phycl_net
 2025-12-13 07:20:07,315 - INFO - [loso_SA19]   Total params: 1.65M
 2025-12-13 07:20:07,315 - INFO - [loso_SA19]   Trainable params: 1.65M
 2025-12-13 07:20:07,318 - INFO - [loso_SA19] Using weighted CrossEntropyLoss based on training data balance.
@@ -1283,7 +1283,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 07:55:37,128 - INFO - [loso_SA19] Seed 42 Test Results: {'accuracy': 0.9856194690265486, 'specificity': 0.9782608695652165, 'fall_f1': 0.982894736841604, 'sensitivity': 0.9959999999999987, 'macro_f1': 0.9852450783442157, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9870905865658706, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 07:55:37,136 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed42_loso_SA19.csv
 2025-12-13 07:56:34,235 - WARNING - [loso_SA21] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 42; starting fresh.
-2025-12-13 07:56:34,422 - INFO - [loso_SA21] Model: amsv2
+2025-12-13 07:56:34,422 - INFO - [loso_SA21] Model: phycl_net
 2025-12-13 07:56:34,422 - INFO - [loso_SA21]   Total params: 1.65M
 2025-12-13 07:56:34,422 - INFO - [loso_SA21]   Trainable params: 1.65M
 2025-12-13 07:56:34,426 - INFO - [loso_SA21] Using weighted CrossEntropyLoss based on training data balance.
@@ -1351,7 +1351,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 08:22:20,904 - INFO - Saved split stats to ./outputs/ablation_time_only\split_stats_seed42.json
 2025-12-13 08:22:20,960 - INFO - Seed set to 123 (deterministic=False)
 2025-12-13 08:22:20,984 - INFO - Running LOSO across 12 subjects.
-2025-12-13 08:23:17,360 - INFO - [loso_SA01] Model: amsv2
+2025-12-13 08:23:17,360 - INFO - [loso_SA01] Model: phycl_net
 2025-12-13 08:23:17,360 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-13 08:23:17,360 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-13 08:23:17,363 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -1423,7 +1423,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 08:51:47,590 - INFO - [loso_SA01] Seed 123 Test Results: {'accuracy': 0.9845132743362832, 'specificity': 0.9971644612476362, 'fall_f1': 0.9810554803783891, 'sensitivity': 0.9666666666666653, 'macro_f1': 0.9839795643236495, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.981797151081991, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 08:51:47,598 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA01.csv
 2025-12-13 08:52:43,670 - WARNING - [loso_SA02] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 08:52:43,854 - INFO - [loso_SA02] Model: amsv2
+2025-12-13 08:52:43,854 - INFO - [loso_SA02] Model: phycl_net
 2025-12-13 08:52:43,855 - INFO - [loso_SA02]   Total params: 1.65M
 2025-12-13 08:52:43,855 - INFO - [loso_SA02]   Trainable params: 1.65M
 2025-12-13 08:52:43,858 - INFO - [loso_SA02] Using weighted CrossEntropyLoss based on training data balance.
@@ -1508,7 +1508,7 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 09:28:12,041 - INFO - [loso_SA02] Seed 123 Test Results: {'accuracy': 0.9358407079646017, 'specificity': 0.9102079395085059, 'fall_f1': 0.9263024142307578, 'sensitivity': 0.9719999999999986, 'macro_f1': 0.9347476811601826, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9405966814752572, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 09:28:12,048 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA02.csv
 2025-12-13 09:29:08,450 - WARNING - [loso_SA04] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 09:29:08,643 - INFO - [loso_SA04] Model: amsv2
+2025-12-13 09:29:08,643 - INFO - [loso_SA04] Model: phycl_net
 2025-12-13 09:29:08,643 - INFO - [loso_SA04]   Total params: 1.65M
 2025-12-13 09:29:08,643 - INFO - [loso_SA04]   Trainable params: 1.65M
 2025-12-13 09:29:08,646 - INFO - [loso_SA04] Using weighted CrossEntropyLoss based on training data balance.
@@ -1575,13 +1575,13 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 h
 2025-12-13 09:59:19,411 - INFO - [loso_SA04] Seed 123 | Ep 15: Loss=0.0893 (ce=0.0239 tfcl_layer0=0.5631 tfcl_cross0->1=0.6173 tfcl_layer1=0.5371 tfcl_cross1->2=0.6466 tfcl_layer2=0.4385 tfcl_cross2->3=0.4389 tfcl_layer3=0.3310 tfcl_cross3->4=0.3719 tfcl_layer4=0.2349 tfcl_cross4->5=0.2559 tfcl_layer5=0.3805 tfcl_sup=6.7717 tfcl_total=0.6436 center=0.1014) Val_F1=0.9935 Best_F1=0.9956
 2025-12-13 09:59:47,299 - ERROR - Run failed for seed 123: 
 2025-12-13 09:59:47,376 - ERROR - Traceback (most recent call last):
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 2715, in main
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2715, in main
     res = run_one_experiment(config, s, args.resume)
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 2517, in run_one_experiment
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2517, in run_one_experiment
     res = train_eval_split(train_ds, val_ds, test_ds, split_tag, resume_path_split)
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 2328, in train_eval_split
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 2328, in train_eval_split
     loss, loss_parts = train_epoch(model, train_dl, optimizer, device, criterion, scaler, config['accum_steps'])
-  File "D:\666\´ó´´\DMC_Net_experiments.py", line 1154, in train_epoch
+  File "D:\666\ï¿½ï¿½\PhyCL-Net_experiments.py", line 1154, in train_epoch
     for i, (x, y, _) in enumerate(loader):
   File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\utils\data\dataloader.py", line 484, in __iter__
     return self._get_iterator()
@@ -2292,10 +2292,10 @@ MemoryError
   "specificity_std_ci_upper": null
 }
 2025-12-13 10:22:50,536 - INFO - Logging initialized. Output directory: ./outputs/ablation_time_only
-2025-12-13 10:22:52,473 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_time_only', 'model': 'amsv2', 'epochs': 50, 'batch_size': 128, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 1, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': './outputs/ablation_time_only'}
+2025-12-13 10:22:52,473 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_time_only', 'model': 'phycl_net', 'epochs': 50, 'batch_size': 128, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 1, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': './outputs/ablation_time_only'}
 2025-12-13 10:22:52,475 - INFO - Seed set to 123 (deterministic=False)
 2025-12-13 10:22:52,500 - INFO - Running LOSO across 12 subjects.
-2025-12-13 10:23:52,494 - INFO - [loso_SA01] Model: amsv2
+2025-12-13 10:23:52,494 - INFO - [loso_SA01] Model: phycl_net
 2025-12-13 10:23:52,495 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-13 10:23:52,495 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-13 10:23:55,866 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -2398,7 +2398,7 @@ MemoryError
 2025-12-13 10:54:57,997 - DEBUG - Manual metrics - Acc: 0.9829, Macro F1: 0.9822, Fall F1: 0.9789
 2025-12-13 10:54:58,001 - INFO - [loso_SA01] Seed 123 Test Results: {'accuracy': 0.9828539823008849, 'specificity': 0.9990548204158781, 'fall_f1': 0.9789259007472895, 'sensitivity': 0.9599999999999987, 'macro_f1': 0.9822368431472872, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9793327461079007, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 10:54:58,008 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA01.csv
-2025-12-13 10:55:54,311 - INFO - [loso_SA02] Model: amsv2
+2025-12-13 10:55:54,311 - INFO - [loso_SA02] Model: phycl_net
 2025-12-13 10:55:54,311 - INFO - [loso_SA02]   Total params: 1.65M
 2025-12-13 10:55:54,312 - INFO - [loso_SA02]   Trainable params: 1.65M
 2025-12-13 10:55:54,315 - INFO - [loso_SA02] Using weighted CrossEntropyLoss based on training data balance.
@@ -2473,7 +2473,7 @@ MemoryError
 2025-12-13 11:16:16,015 - DEBUG - Manual metrics - Acc: 0.9436, Macro F1: 0.9424, Fall F1: 0.9341
 2025-12-13 11:16:16,019 - INFO - [loso_SA02] Seed 123 Test Results: {'accuracy': 0.9435840707964602, 'specificity': 0.9291115311909255, 'fall_f1': 0.9341085271312821, 'sensitivity': 0.9639999999999986, 'macro_f1': 0.9423927548613289, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9463950105891572, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 11:16:16,026 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA02.csv
-2025-12-13 11:17:12,206 - INFO - [loso_SA04] Model: amsv2
+2025-12-13 11:17:12,206 - INFO - [loso_SA04] Model: phycl_net
 2025-12-13 11:17:12,206 - INFO - [loso_SA04]   Total params: 1.65M
 2025-12-13 11:17:12,206 - INFO - [loso_SA04]   Trainable params: 1.65M
 2025-12-13 11:17:12,210 - INFO - [loso_SA04] Using weighted CrossEntropyLoss based on training data balance.
@@ -2589,7 +2589,7 @@ MemoryError
 2025-12-13 11:51:06,494 - INFO - [loso_SA04] Seed 123 Test Results: {'accuracy': 0.9977876106194691, 'specificity': 0.9971644612476362, 'fall_f1': 0.9973368841539594, 'sensitivity': 0.9986666666666653, 'macro_f1': 0.9977223682829732, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9979152812902696, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 11:51:06,502 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA04.csv
 2025-12-13 11:52:03,618 - WARNING - [loso_SA05] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 11:52:03,817 - INFO - [loso_SA05] Model: amsv2
+2025-12-13 11:52:03,817 - INFO - [loso_SA05] Model: phycl_net
 2025-12-13 11:52:03,818 - INFO - [loso_SA05]   Total params: 1.65M
 2025-12-13 11:52:03,818 - INFO - [loso_SA05]   Trainable params: 1.65M
 2025-12-13 11:52:03,821 - INFO - [loso_SA05] Using weighted CrossEntropyLoss based on training data balance.
@@ -2654,7 +2654,7 @@ MemoryError
 2025-12-13 12:09:01,567 - INFO - [loso_SA05] Seed 123 Test Results: {'accuracy': 0.9972345132743363, 'specificity': 0.9952741020793943, 'fall_f1': 0.996677740863286, 'sensitivity': 0.9999999999999987, 'macro_f1': 0.9971545975749264, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9976342526594568, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 12:09:01,575 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA05.csv
 2025-12-13 12:09:58,426 - WARNING - [loso_SA06] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 12:09:58,621 - INFO - [loso_SA06] Model: amsv2
+2025-12-13 12:09:58,621 - INFO - [loso_SA06] Model: phycl_net
 2025-12-13 12:09:58,622 - INFO - [loso_SA06]   Total params: 1.65M
 2025-12-13 12:09:58,622 - INFO - [loso_SA06]   Trainable params: 1.65M
 2025-12-13 12:09:58,625 - INFO - [loso_SA06] Using weighted CrossEntropyLoss based on training data balance.
@@ -2723,7 +2723,7 @@ MemoryError
 2025-12-13 12:28:11,971 - INFO - [loso_SA06] Seed 123 Test Results: {'accuracy': 0.9883849557522124, 'specificity': 0.9933837429111523, 'fall_f1': 0.9859343603477906, 'sensitivity': 0.981333333333332, 'macro_f1': 0.988021348802943, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9873401540047597, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 12:28:11,981 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA06.csv
 2025-12-13 12:29:08,641 - WARNING - [loso_SA09] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 12:29:08,827 - INFO - [loso_SA09] Model: amsv2
+2025-12-13 12:29:08,827 - INFO - [loso_SA09] Model: phycl_net
 2025-12-13 12:29:08,827 - INFO - [loso_SA09]   Total params: 1.65M
 2025-12-13 12:29:08,827 - INFO - [loso_SA09]   Trainable params: 1.65M
 2025-12-13 12:29:08,830 - INFO - [loso_SA09] Using weighted CrossEntropyLoss based on training data balance.
@@ -2792,7 +2792,7 @@ MemoryError
 2025-12-13 12:47:22,536 - INFO - [loso_SA09] Seed 123 Test Results: {'accuracy': 0.9977876106194691, 'specificity': 0.9981096408317571, 'fall_f1': 0.9973333333328319, 'sensitivity': 0.997333333333332, 'macro_f1': 0.9977214870820446, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.997721411578839, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 12:47:22,543 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA09.csv
 2025-12-13 12:48:19,581 - WARNING - [loso_SA10] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 12:48:19,775 - INFO - [loso_SA10] Model: amsv2
+2025-12-13 12:48:19,775 - INFO - [loso_SA10] Model: phycl_net
 2025-12-13 12:48:19,775 - INFO - [loso_SA10]   Total params: 1.65M
 2025-12-13 12:48:19,775 - INFO - [loso_SA10]   Trainable params: 1.65M
 2025-12-13 12:48:19,778 - INFO - [loso_SA10] Using weighted CrossEntropyLoss based on training data balance.
@@ -2873,7 +2873,7 @@ MemoryError
 2025-12-13 13:10:28,135 - INFO - [loso_SA10] Seed 123 Test Results: {'accuracy': 0.9977876106194691, 'specificity': 0.9971644612476362, 'fall_f1': 0.9973368841539594, 'sensitivity': 0.9986666666666653, 'macro_f1': 0.9977223682829732, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9979152812902696, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 13:10:28,142 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA10.csv
 2025-12-13 13:11:25,237 - WARNING - [loso_SA11] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 13:11:25,425 - INFO - [loso_SA11] Model: amsv2
+2025-12-13 13:11:25,425 - INFO - [loso_SA11] Model: phycl_net
 2025-12-13 13:11:25,425 - INFO - [loso_SA11]   Total params: 1.65M
 2025-12-13 13:11:25,425 - INFO - [loso_SA11]   Trainable params: 1.65M
 2025-12-13 13:11:25,428 - INFO - [loso_SA11] Using weighted CrossEntropyLoss based on training data balance.
@@ -2970,7 +2970,7 @@ MemoryError
 2025-12-13 13:38:42,896 - INFO - [loso_SA11] Seed 123 Test Results: {'accuracy': 0.9480088495575221, 'specificity': 0.9555765595463129, 'fall_f1': 0.937333333332832, 'sensitivity': 0.937333333333332, 'macro_f1': 0.9464549464393224, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9464109899059407, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 13:38:42,904 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA11.csv
 2025-12-13 13:39:39,964 - WARNING - [loso_SA17] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 13:39:40,156 - INFO - [loso_SA17] Model: amsv2
+2025-12-13 13:39:40,156 - INFO - [loso_SA17] Model: phycl_net
 2025-12-13 13:39:40,157 - INFO - [loso_SA17]   Total params: 1.65M
 2025-12-13 13:39:40,157 - INFO - [loso_SA17]   Trainable params: 1.65M
 2025-12-13 13:39:40,161 - INFO - [loso_SA17] Using weighted CrossEntropyLoss based on training data balance.
@@ -3067,7 +3067,7 @@ MemoryError
 2025-12-13 14:07:06,398 - INFO - [loso_SA17] Seed 123 Test Results: {'accuracy': 0.9871508379888269, 'specificity': 0.9903846153846145, 'fall_f1': 0.9846359385432528, 'sensitivity': 0.9826666666666654, 'macro_f1': 0.9867970859300413, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9865180934569556, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 14:07:06,406 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA17.csv
 2025-12-13 14:08:02,867 - WARNING - [loso_SA18] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 14:08:03,053 - INFO - [loso_SA18] Model: amsv2
+2025-12-13 14:08:03,053 - INFO - [loso_SA18] Model: phycl_net
 2025-12-13 14:08:03,053 - INFO - [loso_SA18]   Total params: 1.65M
 2025-12-13 14:08:03,053 - INFO - [loso_SA18]   Trainable params: 1.65M
 2025-12-13 14:08:03,056 - INFO - [loso_SA18] Using weighted CrossEntropyLoss based on training data balance.
@@ -3176,7 +3176,7 @@ MemoryError
 2025-12-13 14:39:09,896 - INFO - [loso_SA18] Seed 123 Test Results: {'accuracy': 0.9933628318584071, 'specificity': 0.9971644612476362, 'fall_f1': 0.9919678714854424, 'sensitivity': 0.9879999999999987, 'macro_f1': 0.9931564145360617, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.992571653691895, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 14:39:09,904 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA18.csv
 2025-12-13 14:40:06,903 - WARNING - [loso_SA19] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 14:40:07,092 - INFO - [loso_SA19] Model: amsv2
+2025-12-13 14:40:07,092 - INFO - [loso_SA19] Model: phycl_net
 2025-12-13 14:40:07,092 - INFO - [loso_SA19]   Total params: 1.65M
 2025-12-13 14:40:07,092 - INFO - [loso_SA19]   Trainable params: 1.65M
 2025-12-13 14:40:07,096 - INFO - [loso_SA19] Using weighted CrossEntropyLoss based on training data balance.
@@ -3249,7 +3249,7 @@ MemoryError
 2025-12-13 14:59:38,916 - INFO - [loso_SA19] Seed 123 Test Results: {'accuracy': 0.9928097345132744, 'specificity': 0.9877126654064263, 'fall_f1': 0.9914077990741846, 'sensitivity': 0.9999999999999987, 'macro_f1': 0.9926130769025099, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9938373435358651, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-13 14:59:38,923 - INFO - Saved error analysis to ./outputs/ablation_time_only\errors_seed123_loso_SA19.csv
 2025-12-13 15:00:35,331 - WARNING - [loso_SA21] Resume dir './outputs/ablation_time_only' has no checkpoint for seed 123; starting fresh.
-2025-12-13 15:00:35,516 - INFO - [loso_SA21] Model: amsv2
+2025-12-13 15:00:35,516 - INFO - [loso_SA21] Model: phycl_net
 2025-12-13 15:00:35,516 - INFO - [loso_SA21]   Total params: 1.65M
 2025-12-13 15:00:35,516 - INFO - [loso_SA21]   Trainable params: 1.65M
 2025-12-13 15:00:35,520 - INFO - [loso_SA21] Using weighted CrossEntropyLoss based on training data balance.

@@ -326,7 +326,7 @@ def pack_submission(output_dir: Path, include_checkpoints: bool = False):
                 display_name = exp_name.replace('stage1_', '').replace('_final', '')
                 display_name = display_name.replace('ablation_', 'Ablation: ')
                 display_name = display_name.replace('rerun_', '')
-                display_name = display_name.upper() if 'amsv2' in display_name.lower() else display_name.title()
+                display_name = display_name.upper() if 'phycl_net' in display_name.lower() else display_name.title()
                 all_metrics[display_name] = metrics
 
         # Optionally copy checkpoints

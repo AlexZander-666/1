@@ -1,8 +1,8 @@
-2025-12-08 18:22:56,180 - INFO - Logging initialized. Output directory: ./outputs/ablation_no_faa
-2025-12-08 18:22:58,423 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_no_faa', 'model': 'amsv2', 'epochs': 50, 'batch_size': 96, 'lr': 0.001, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
+﻿2025-12-08 18:22:56,180 - INFO - Logging initialized. Output directory: ./outputs/ablation_no_faa
+2025-12-08 18:22:58,423 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_no_faa', 'model': 'phycl_net', 'epochs': 50, 'batch_size': 96, 'lr': 0.001, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
 2025-12-08 18:22:58,429 - INFO - Seed set to 42 (deterministic=False)
 2025-12-08 18:22:58,472 - INFO - Running LOSO across 12 subjects.
-2025-12-08 18:24:32,059 - INFO - [loso_SA01] Model: amsv2
+2025-12-08 18:24:32,059 - INFO - [loso_SA01] Model: phycl_net
 2025-12-08 18:24:32,060 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-08 18:24:32,060 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-08 18:24:36,199 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -98,7 +98,7 @@
 2025-12-08 20:21:31,432 - DEBUG - Manual metrics - Acc: 0.9823, Macro F1: 0.9817, Fall F1: 0.9783
 2025-12-08 20:21:31,442 - INFO - [loso_SA01] Seed 42 Test Results: {'accuracy': 0.9823008849557522, 'specificity': 0.9971644612476362, 'fall_f1': 0.9782903663495667, 'sensitivity': 0.961333333333332, 'macro_f1': 0.9816755286460549, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9790849990745064, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-08 20:21:31,457 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA01.csv
-2025-12-08 20:22:54,772 - INFO - [loso_SA02] Model: amsv2
+2025-12-08 20:22:54,772 - INFO - [loso_SA02] Model: phycl_net
 2025-12-08 20:22:54,773 - INFO - [loso_SA02]   Total params: 1.65M
 2025-12-08 20:22:54,773 - INFO - [loso_SA02]   Trainable params: 1.65M
 2025-12-08 20:22:54,779 - INFO - [loso_SA02] Using weighted CrossEntropyLoss based on training data balance.
@@ -182,7 +182,7 @@
 2025-12-09 02:53:46,882 - DEBUG - Manual metrics - Acc: 0.9192, Macro F1: 0.9180, Fall F1: 0.9078
 2025-12-09 02:53:46,890 - INFO - [loso_SA02] Seed 42 Test Results: {'accuracy': 0.9192477876106194, 'specificity': 0.8913043478260861, 'fall_f1': 0.907828282827783, 'sensitivity': 0.9586666666666653, 'macro_f1': 0.9179889445632478, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9243720939729521, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-09 02:53:46,899 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA02.csv
-2025-12-09 02:55:05,845 - INFO - [loso_SA04] Model: amsv2
+2025-12-09 02:55:05,845 - INFO - [loso_SA04] Model: phycl_net
 2025-12-09 02:55:05,845 - INFO - [loso_SA04]   Total params: 1.65M
 2025-12-09 02:55:05,845 - INFO - [loso_SA04]   Trainable params: 1.65M
 2025-12-09 02:55:05,849 - INFO - [loso_SA04] Using weighted CrossEntropyLoss based on training data balance.
@@ -228,10 +228,10 @@
 2025-12-09 03:29:06,231 - DEBUG - Manual metrics - Acc: 0.9779, Macro F1: 0.9773, Fall F1: 0.9736
 2025-12-09 03:29:07,367 - INFO - [loso_SA04] Seed 42 | Ep 10: Loss=0.0961 (ce=0.0316 tfcl_layer0=0.4910 tfcl_cross0->1=0.5282 tfcl_layer1=0.4377 tfcl_cross1->2=0.6056 tfcl_layer2=0.4173 tfcl_cross2->3=0.4975 tfcl_layer3=0.4193 tfcl_cross3->4=0.4761 tfcl_layer4=0.2876 tfcl_cross4->5=0.2894 tfcl_layer5=0.3875 tfcl_sup=6.4139 tfcl_total=0.6335 center=0.1161) Val_F1=0.9773 Best_F1=0.9773
 2025-12-09 03:29:19,143 - INFO - Logging initialized. Output directory: ./outputs/ablation_no_faa
-2025-12-09 03:29:29,171 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_no_faa', 'model': 'amsv2', 'epochs': 50, 'batch_size': 256, 'lr': 0.004, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 8, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123, 456], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
+2025-12-09 03:29:29,171 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_no_faa', 'model': 'phycl_net', 'epochs': 50, 'batch_size': 256, 'lr': 0.004, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 8, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123, 456], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
 2025-12-09 03:29:29,174 - INFO - Seed set to 42 (deterministic=False)
 2025-12-09 03:29:29,219 - INFO - Running LOSO across 12 subjects.
-2025-12-09 03:30:41,968 - INFO - [loso_SA01] Model: amsv2
+2025-12-09 03:30:41,968 - INFO - [loso_SA01] Model: phycl_net
 2025-12-09 03:30:41,968 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-09 03:30:41,968 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-09 03:30:46,057 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -283,7 +283,7 @@
 2025-12-09 07:57:33,349 - DEBUG - Manual metrics - Acc: 0.9978, Macro F1: 0.9977, Fall F1: 0.9973
 2025-12-09 07:57:33,355 - INFO - [loso_SA04] Seed 42 Test Results: {'accuracy': 0.9977876106194691, 'specificity': 0.9962192816635153, 'fall_f1': 0.9973404255314134, 'sensitivity': 0.9999999999999987, 'macro_f1': 0.9977232430684866, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9981078507173029, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-09 07:57:33,364 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA04.csv
-2025-12-09 07:59:13,221 - INFO - [loso_SA05] Model: amsv2
+2025-12-09 07:59:13,221 - INFO - [loso_SA05] Model: phycl_net
 2025-12-09 07:59:13,221 - INFO - [loso_SA05]   Total params: 1.65M
 2025-12-09 07:59:13,221 - INFO - [loso_SA05]   Trainable params: 1.65M
 2025-12-09 07:59:13,226 - INFO - [loso_SA05] Using weighted CrossEntropyLoss based on training data balance.
@@ -355,7 +355,7 @@
 2025-12-09 19:50:43,881 - DEBUG - Manual metrics - Acc: 0.9950, Macro F1: 0.9949, Fall F1: 0.9940
 2025-12-09 19:50:43,892 - INFO - [loso_SA05] Seed 42 Test Results: {'accuracy': 0.9950221238938053, 'specificity': 0.9933837429111523, 'fall_f1': 0.994019933554316, 'sensitivity': 0.997333333333332, 'macro_f1': 0.9948782756352685, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9953565791196245, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-09 19:50:43,908 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA05.csv
-2025-12-09 19:52:27,093 - INFO - [loso_SA06] Model: amsv2
+2025-12-09 19:52:27,093 - INFO - [loso_SA06] Model: phycl_net
 2025-12-09 19:52:27,093 - INFO - [loso_SA06]   Total params: 1.65M
 2025-12-09 19:52:27,094 - INFO - [loso_SA06]   Trainable params: 1.65M
 2025-12-09 19:52:27,100 - INFO - [loso_SA06] Using weighted CrossEntropyLoss based on training data balance.
@@ -479,7 +479,7 @@
 2025-12-10 11:38:47,004 - DEBUG - Manual metrics - Acc: 0.9917, Macro F1: 0.9914, Fall F1: 0.9900
 2025-12-10 11:38:47,014 - INFO - [loso_SA06] Seed 42 Test Results: {'accuracy': 0.9917035398230089, 'specificity': 0.9952741020793943, 'fall_f1': 0.9899665551834451, 'sensitivity': 0.9866666666666654, 'macro_f1': 0.9914472096989686, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9909610389507422, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-10 11:38:47,030 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA06.csv
-2025-12-10 11:40:22,849 - INFO - [loso_SA09] Model: amsv2
+2025-12-10 11:40:22,849 - INFO - [loso_SA09] Model: phycl_net
 2025-12-10 11:40:22,850 - INFO - [loso_SA09]   Total params: 1.65M
 2025-12-10 11:40:22,850 - INFO - [loso_SA09]   Trainable params: 1.65M
 2025-12-10 11:40:22,855 - INFO - [loso_SA09] Using weighted CrossEntropyLoss based on training data balance.
@@ -553,10 +553,10 @@
 2025-12-10 21:07:10,398 - DEBUG - Manual metrics - Acc: 0.9559, Macro F1: 0.9549, Fall F1: 0.9479
 2025-12-10 21:07:11,256 - INFO - [loso_SA09] Seed 42 | Ep 17: Loss=0.0557 (ce=0.0074 tfcl_layer0=0.3796 tfcl_cross0->1=0.4350 tfcl_layer1=0.3901 tfcl_cross1->2=0.4465 tfcl_layer2=0.2800 tfcl_cross2->3=0.3017 tfcl_layer3=0.2446 tfcl_cross3->4=0.2781 tfcl_layer4=0.1721 tfcl_cross4->5=0.1842 tfcl_layer5=0.2999 tfcl_sup=5.9683 tfcl_total=0.4761 center=0.0681) Val_F1=0.9549 Best_F1=0.9628
 2025-12-10 21:49:10,950 - INFO - Logging initialized. Output directory: ./outputs/ablation_no_faa
-2025-12-10 21:49:12,953 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_no_faa', 'model': 'amsv2', 'epochs': 50, 'batch_size': 96, 'lr': 0.001, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
+2025-12-10 21:49:12,953 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_no_faa', 'model': 'phycl_net', 'epochs': 50, 'batch_size': 96, 'lr': 0.001, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
 2025-12-10 21:49:12,956 - INFO - Seed set to 42 (deterministic=False)
 2025-12-10 21:49:12,981 - INFO - Running LOSO across 12 subjects.
-2025-12-10 21:50:18,618 - INFO - [loso_SA01] Model: amsv2
+2025-12-10 21:50:18,618 - INFO - [loso_SA01] Model: phycl_net
 2025-12-10 21:50:18,619 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-10 21:50:18,619 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-10 21:50:22,243 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -626,19 +626,19 @@
 2025-12-10 22:37:18,599 - DEBUG - Manual metrics - Acc: 0.9650, Macro F1: 0.9639, Fall F1: 0.9578
 2025-12-10 22:37:19,269 - INFO - [loso_SA01] Seed 42 | Ep 16: Loss=0.0618 (ce=0.0084 tfcl_layer0=0.3983 tfcl_cross0->1=0.4565 tfcl_layer1=0.3963 tfcl_cross1->2=0.4700 tfcl_layer2=0.3035 tfcl_cross2->3=0.3405 tfcl_layer3=0.2893 tfcl_cross3->4=0.3473 tfcl_layer4=0.2364 tfcl_cross4->5=0.2398 tfcl_layer5=0.3561 tfcl_sup=6.2087 tfcl_total=0.5262 center=0.0783) Val_F1=0.9639 Best_F1=0.9660
 2025-12-11 12:22:30,810 - INFO - Logging initialized. Output directory: ./outputs/ablation_no_faa
-2025-12-11 12:22:41,147 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_no_faa', 'model': 'amsv2', 'epochs': 50, 'batch_size': 256, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
+2025-12-11 12:22:41,147 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_no_faa', 'model': 'phycl_net', 'epochs': 50, 'batch_size': 256, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
 2025-12-11 12:22:41,149 - INFO - Seed set to 42 (deterministic=False)
 2025-12-11 12:22:41,173 - INFO - Running LOSO across 12 subjects.
-2025-12-11 12:24:00,004 - INFO - [loso_SA01] Model: amsv2
+2025-12-11 12:24:00,004 - INFO - [loso_SA01] Model: phycl_net
 2025-12-11 12:24:00,004 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-11 12:24:00,004 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-11 12:24:04,330 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
 2025-12-11 12:24:04,340 - INFO - Computed class weights: [0.8551977 1.2038333]
 2025-12-12 04:20:14,798 - INFO - Logging initialized. Output directory: ./outputs/ablation_no_faa
-2025-12-12 04:20:23,322 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_no_faa', 'model': 'amsv2', 'epochs': 50, 'batch_size': 256, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
+2025-12-12 04:20:23,322 - INFO - Optimized Config: {'dataset': 'sisfall', 'data_root': './data', 'out_dir': './outputs/ablation_no_faa', 'model': 'phycl_net', 'epochs': 50, 'batch_size': 256, 'lr': 0.0016, 'warmup_epochs': 5, 'accum_steps': 1, 'channels': 64, 'n_blocks': 4, 'kernel_sizes': [7, 15, 31, 63], 'freq_method': 'fft', 'fusion_variant': 'enhanced', 'fusion_kernel_sizes': (3, 5, 7), 'num_bands': 4, 'band_edges': None, 'adaptive_bands': True, 'attn_time': 'none', 'attn_freq': 'none', 'attn_fuse': 'none', 'attn_lite': 'none', 'faa_axis_attn': True, 'num_workers': 4, 'num_classes': 2, 'in_channels': 3, 'patience': 15, 'window_size': 512, 'stride': 256, 'channels_used': 'accel3', 'augment': False, 'noise_std': 0.05, 'scale_range': [0.9, 1.1], 'time_shift_ratio': 0.1, 'drop_prob': 0.1, 'eval_mode': 'loso', 'seeds': [42, 123], 'amp': True, 'weighted_loss': True, 'profile': False, 'run_robustness': False, 'run_ablation_suite': False, 'viz_tsne': False, 'viz_tsne_stage': 'final', 'viz_routing': False, 'viz_gradcam': False, 'loso_max_folds': None, 'deterministic': False, 'use_tfcl': True, 'ablation': {'mspa': True, 'dks': True, 'faa': True, 'tfcl': True, 'center': True}, 'proj_dim': 128, 'tf_temperature': 0.1, 'tf_supervised_weight': 0.1, 'tf_cross_weight': 0.3, 'tf_hierarchical': True, 'label_smoothing': 0.0, 'min_patience': 5, 'patience_decay': 0.9, 'loss_alpha': 0.1, 'loss_beta': 0.01, 'rocket_kernels': 256, 'rocket_kernel_size': 9, 'lstm_hidden': 128, 'stat_baseline': None, 'sample_rate': 50.0, 'cross_eval': False, 'resume': None}
 2025-12-12 04:20:23,324 - INFO - Seed set to 42 (deterministic=False)
 2025-12-12 04:20:23,348 - INFO - Running LOSO across 12 subjects.
-2025-12-12 04:21:21,063 - INFO - [loso_SA01] Model: amsv2
+2025-12-12 04:21:21,063 - INFO - [loso_SA01] Model: phycl_net
 2025-12-12 04:21:21,063 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-12 04:21:21,063 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-12 04:21:24,534 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -734,7 +734,7 @@
 2025-12-12 05:00:37,027 - DEBUG - Manual metrics - Acc: 0.9889, Macro F1: 0.9886, Fall F1: 0.9866
 2025-12-12 05:00:37,032 - INFO - [loso_SA01] Seed 42 Test Results: {'accuracy': 0.9889380530973452, 'specificity': 0.9962192816635153, 'fall_f1': 0.986559139784445, 'sensitivity': 0.9786666666666654, 'macro_f1': 0.9885803217716713, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9874039718649568, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 05:00:37,040 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA01.csv
-2025-12-12 05:01:35,393 - INFO - [loso_SA02] Model: amsv2
+2025-12-12 05:01:35,393 - INFO - [loso_SA02] Model: phycl_net
 2025-12-12 05:01:35,393 - INFO - [loso_SA02]   Total params: 1.65M
 2025-12-12 05:01:35,393 - INFO - [loso_SA02]   Trainable params: 1.65M
 2025-12-12 05:01:35,396 - INFO - [loso_SA02] Using weighted CrossEntropyLoss based on training data balance.
@@ -806,7 +806,7 @@
 2025-12-12 05:29:20,767 - DEBUG - Manual metrics - Acc: 0.9242, Macro F1: 0.9227, Fall F1: 0.9118
 2025-12-12 05:29:20,774 - INFO - [loso_SA02] Seed 42 Test Results: {'accuracy': 0.9242256637168141, 'specificity': 0.9102079395085059, 'fall_f1': 0.9117836445584175, 'sensitivity': 0.9439999999999987, 'macro_f1': 0.9226877505387743, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9269499958983917, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 05:29:20,785 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA02.csv
-2025-12-12 05:30:19,870 - INFO - [loso_SA04] Model: amsv2
+2025-12-12 05:30:19,870 - INFO - [loso_SA04] Model: phycl_net
 2025-12-12 05:30:19,870 - INFO - [loso_SA04]   Total params: 1.65M
 2025-12-12 05:30:19,870 - INFO - [loso_SA04]   Trainable params: 1.65M
 2025-12-12 05:30:19,874 - INFO - [loso_SA04] Using weighted CrossEntropyLoss based on training data balance.
@@ -878,7 +878,7 @@
 2025-12-12 05:56:41,627 - DEBUG - Manual metrics - Acc: 0.9972, Macro F1: 0.9972, Fall F1: 0.9967
 2025-12-12 05:56:41,632 - INFO - [loso_SA04] Seed 42 Test Results: {'accuracy': 0.9972345132743363, 'specificity': 0.9962192816635153, 'fall_f1': 0.9966733200261121, 'sensitivity': 0.9986666666666653, 'macro_f1': 0.9971535080960995, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9974422235337556, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 05:56:41,641 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA04.csv
-2025-12-12 05:57:40,468 - INFO - [loso_SA05] Model: amsv2
+2025-12-12 05:57:40,468 - INFO - [loso_SA05] Model: phycl_net
 2025-12-12 05:57:40,469 - INFO - [loso_SA05]   Total params: 1.65M
 2025-12-12 05:57:40,469 - INFO - [loso_SA05]   Trainable params: 1.65M
 2025-12-12 05:57:40,472 - INFO - [loso_SA05] Using weighted CrossEntropyLoss based on training data balance.
@@ -942,7 +942,7 @@
 2025-12-12 06:22:57,014 - DEBUG - Manual metrics - Acc: 0.9923, Macro F1: 0.9920, Fall F1: 0.9907
 2025-12-12 06:22:57,018 - INFO - [loso_SA05] Seed 42 Test Results: {'accuracy': 0.9922566371681416, 'specificity': 0.9933837429111523, 'fall_f1': 0.9906666666661653, 'sensitivity': 0.9906666666666654, 'macro_f1': 0.9920252047884088, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9920242745571536, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 06:22:57,027 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA05.csv
-2025-12-12 06:23:56,720 - INFO - [loso_SA06] Model: amsv2
+2025-12-12 06:23:56,720 - INFO - [loso_SA06] Model: phycl_net
 2025-12-12 06:23:56,721 - INFO - [loso_SA06]   Total params: 1.65M
 2025-12-12 06:23:56,721 - INFO - [loso_SA06]   Trainable params: 1.65M
 2025-12-12 06:23:56,724 - INFO - [loso_SA06] Using weighted CrossEntropyLoss based on training data balance.
@@ -1038,7 +1038,7 @@
 2025-12-12 07:00:42,925 - DEBUG - Manual metrics - Acc: 0.9923, Macro F1: 0.9920, Fall F1: 0.9906
 2025-12-12 07:00:42,930 - INFO - [loso_SA06] Seed 42 Test Results: {'accuracy': 0.9922566371681416, 'specificity': 0.9971644612476362, 'fall_f1': 0.9906166219834128, 'sensitivity': 0.985333333333332, 'macro_f1': 0.9920126424415502, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9912312457154837, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 07:00:42,938 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA06.csv
-2025-12-12 07:01:41,905 - INFO - [loso_SA09] Model: amsv2
+2025-12-12 07:01:41,905 - INFO - [loso_SA09] Model: phycl_net
 2025-12-12 07:01:41,906 - INFO - [loso_SA09]   Total params: 1.65M
 2025-12-12 07:01:41,906 - INFO - [loso_SA09]   Trainable params: 1.65M
 2025-12-12 07:01:41,909 - INFO - [loso_SA09] Using weighted CrossEntropyLoss based on training data balance.
@@ -1098,7 +1098,7 @@
 2025-12-12 07:25:05,966 - DEBUG - Manual metrics - Acc: 0.9983, Macro F1: 0.9983, Fall F1: 0.9980
 2025-12-12 07:25:05,970 - INFO - [loso_SA09] Seed 42 Test Results: {'accuracy': 0.9983407079646017, 'specificity': 0.9990548204158781, 'fall_f1': 0.9979986657766834, 'sensitivity': 0.997333333333332, 'macro_f1': 0.9982907830534196, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9981937057646182, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 07:25:05,979 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA09.csv
-2025-12-12 07:26:05,613 - INFO - [loso_SA10] Model: amsv2
+2025-12-12 07:26:05,613 - INFO - [loso_SA10] Model: phycl_net
 2025-12-12 07:26:05,613 - INFO - [loso_SA10]   Total params: 1.65M
 2025-12-12 07:26:05,613 - INFO - [loso_SA10]   Trainable params: 1.65M
 2025-12-12 07:26:05,617 - INFO - [loso_SA10] Using weighted CrossEntropyLoss based on training data balance.
@@ -1274,7 +1274,7 @@
 2025-12-12 08:40:08,049 - DEBUG - Manual metrics - Acc: 0.9961, Macro F1: 0.9960, Fall F1: 0.9953
 2025-12-12 08:40:08,053 - INFO - [loso_SA10] Seed 42 Test Results: {'accuracy': 0.9961283185840708, 'specificity': 0.9962192816635153, 'fall_f1': 0.9953364423712507, 'sensitivity': 0.9959999999999987, 'macro_f1': 0.9960133748496776, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9961096347977264, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 08:40:08,061 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA10.csv
-2025-12-12 08:41:08,484 - INFO - [loso_SA11] Model: amsv2
+2025-12-12 08:41:08,484 - INFO - [loso_SA11] Model: phycl_net
 2025-12-12 08:41:08,484 - INFO - [loso_SA11]   Total params: 1.65M
 2025-12-12 08:41:08,484 - INFO - [loso_SA11]   Trainable params: 1.65M
 2025-12-12 08:41:08,488 - INFO - [loso_SA11] Using weighted CrossEntropyLoss based on training data balance.
@@ -1342,7 +1342,7 @@
 2025-12-12 09:05:53,107 - DEBUG - Manual metrics - Acc: 0.9574, Macro F1: 0.9559, Fall F1: 0.9479
 2025-12-12 09:05:53,115 - INFO - [loso_SA11] Seed 42 Test Results: {'accuracy': 0.9574115044247787, 'specificity': 0.9744801512287327, 'fall_f1': 0.9478672985776978, 'sensitivity': 0.933333333333332, 'macro_f1': 0.9559345843049614, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9536848577037818, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 09:05:53,129 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA11.csv
-2025-12-12 09:06:52,405 - INFO - [loso_SA17] Model: amsv2
+2025-12-12 09:06:52,405 - INFO - [loso_SA17] Model: phycl_net
 2025-12-12 09:06:52,405 - INFO - [loso_SA17]   Total params: 1.65M
 2025-12-12 09:06:52,405 - INFO - [loso_SA17]   Trainable params: 1.65M
 2025-12-12 09:06:52,409 - INFO - [loso_SA17] Using weighted CrossEntropyLoss based on training data balance.
@@ -1434,7 +1434,7 @@
 2025-12-12 09:45:04,303 - DEBUG - Manual metrics - Acc: 0.9899, Macro F1: 0.9897, Fall F1: 0.9880
 2025-12-12 09:45:04,308 - INFO - [loso_SA17] Seed 42 Test Results: {'accuracy': 0.9899441340782122, 'specificity': 0.9923076923076914, 'fall_f1': 0.9879839786376827, 'sensitivity': 0.9866666666666654, 'macro_f1': 0.9896692227479857, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9894831595721683, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 09:45:04,316 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA17.csv
-2025-12-12 09:46:03,681 - INFO - [loso_SA18] Model: amsv2
+2025-12-12 09:46:03,681 - INFO - [loso_SA18] Model: phycl_net
 2025-12-12 09:46:03,681 - INFO - [loso_SA18]   Total params: 1.65M
 2025-12-12 09:46:03,682 - INFO - [loso_SA18]   Trainable params: 1.65M
 2025-12-12 09:46:03,685 - INFO - [loso_SA18] Using weighted CrossEntropyLoss based on training data balance.
@@ -1522,7 +1522,7 @@
 2025-12-12 10:20:20,669 - DEBUG - Manual metrics - Acc: 0.9906, Macro F1: 0.9903, Fall F1: 0.9887
 2025-12-12 10:20:20,674 - INFO - [loso_SA18] Seed 42 Test Results: {'accuracy': 0.9905973451327433, 'specificity': 0.9877126654064263, 'fall_f1': 0.9887342610995649, 'sensitivity': 0.9946666666666653, 'macro_f1': 0.9903329587412739, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9911835675213029, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 10:20:20,682 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA18.csv
-2025-12-12 10:21:19,859 - INFO - [loso_SA19] Model: amsv2
+2025-12-12 10:21:19,859 - INFO - [loso_SA19] Model: phycl_net
 2025-12-12 10:21:19,859 - INFO - [loso_SA19]   Total params: 1.65M
 2025-12-12 10:21:19,859 - INFO - [loso_SA19]   Trainable params: 1.65M
 2025-12-12 10:21:19,863 - INFO - [loso_SA19] Using weighted CrossEntropyLoss based on training data balance.
@@ -1598,7 +1598,7 @@
 2025-12-12 10:51:18,615 - DEBUG - Manual metrics - Acc: 0.9889, Macro F1: 0.9886, Fall F1: 0.9868
 2025-12-12 10:51:18,619 - INFO - [loso_SA19] Seed 42 Test Results: {'accuracy': 0.9889380530973452, 'specificity': 0.9829867674858215, 'fall_f1': 0.9868073878622954, 'sensitivity': 0.997333333333332, 'macro_f1': 0.9886417891689925, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9901340663966629, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 10:51:18,627 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed42_loso_SA19.csv
-2025-12-12 10:52:17,850 - INFO - [loso_SA21] Model: amsv2
+2025-12-12 10:52:17,850 - INFO - [loso_SA21] Model: phycl_net
 2025-12-12 10:52:17,850 - INFO - [loso_SA21]   Total params: 1.65M
 2025-12-12 10:52:17,850 - INFO - [loso_SA21]   Trainable params: 1.65M
 2025-12-12 10:52:17,854 - INFO - [loso_SA21] Using weighted CrossEntropyLoss based on training data balance.
@@ -1666,7 +1666,7 @@
 2025-12-12 11:16:10,195 - INFO - Saved split stats to ./outputs/ablation_no_faa\split_stats_seed42.json
 2025-12-12 11:16:10,247 - INFO - Seed set to 123 (deterministic=False)
 2025-12-12 11:16:10,270 - INFO - Running LOSO across 12 subjects.
-2025-12-12 11:17:09,537 - INFO - [loso_SA01] Model: amsv2
+2025-12-12 11:17:09,537 - INFO - [loso_SA01] Model: phycl_net
 2025-12-12 11:17:09,537 - INFO - [loso_SA01]   Total params: 1.65M
 2025-12-12 11:17:09,537 - INFO - [loso_SA01]   Trainable params: 1.65M
 2025-12-12 11:17:09,541 - INFO - [loso_SA01] Using weighted CrossEntropyLoss based on training data balance.
@@ -1734,7 +1734,7 @@
 2025-12-12 11:41:57,604 - DEBUG - Manual metrics - Acc: 0.9801, Macro F1: 0.9794, Fall F1: 0.9755
 2025-12-12 11:41:57,609 - INFO - [loso_SA01] Seed 123 Test Results: {'accuracy': 0.9800884955752213, 'specificity': 0.9981096408317571, 'fall_f1': 0.975476839236556, 'sensitivity': 0.9546666666666653, 'macro_f1': 0.9793585313498712, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9761465073341788, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 11:41:57,617 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA01.csv
-2025-12-12 11:42:55,995 - INFO - [loso_SA02] Model: amsv2
+2025-12-12 11:42:55,995 - INFO - [loso_SA02] Model: phycl_net
 2025-12-12 11:42:55,995 - INFO - [loso_SA02]   Total params: 1.65M
 2025-12-12 11:42:55,996 - INFO - [loso_SA02]   Trainable params: 1.65M
 2025-12-12 11:42:55,999 - INFO - [loso_SA02] Using weighted CrossEntropyLoss based on training data balance.
@@ -1834,7 +1834,7 @@
 2025-12-12 12:24:37,813 - DEBUG - Manual metrics - Acc: 0.9248, Macro F1: 0.9228, Fall F1: 0.9104
 2025-12-12 12:24:37,821 - INFO - [loso_SA02] Seed 123 Test Results: {'accuracy': 0.9247787610619469, 'specificity': 0.9272211720226835, 'fall_f1': 0.9104084321470614, 'sensitivity': 0.9213333333333321, 'macro_f1': 0.9227923952915835, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9242725643212061, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 12:24:37,834 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA02.csv
-2025-12-12 12:25:37,596 - INFO - [loso_SA04] Model: amsv2
+2025-12-12 12:25:37,596 - INFO - [loso_SA04] Model: phycl_net
 2025-12-12 12:25:37,597 - INFO - [loso_SA04]   Total params: 1.65M
 2025-12-12 12:25:37,597 - INFO - [loso_SA04]   Trainable params: 1.65M
 2025-12-12 12:25:37,601 - INFO - [loso_SA04] Using weighted CrossEntropyLoss based on training data balance.
@@ -1966,7 +1966,7 @@
 2025-12-12 13:20:55,607 - DEBUG - Manual metrics - Acc: 0.9978, Macro F1: 0.9977, Fall F1: 0.9973
 2025-12-12 13:20:55,615 - INFO - [loso_SA04] Seed 123 Test Results: {'accuracy': 0.9977876106194691, 'specificity': 0.9962192816635153, 'fall_f1': 0.9973404255314134, 'sensitivity': 0.9999999999999987, 'macro_f1': 0.9977232430684866, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9981078507173029, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 13:20:55,629 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA04.csv
-2025-12-12 13:21:54,760 - INFO - [loso_SA05] Model: amsv2
+2025-12-12 13:21:54,760 - INFO - [loso_SA05] Model: phycl_net
 2025-12-12 13:21:54,760 - INFO - [loso_SA05]   Total params: 1.65M
 2025-12-12 13:21:54,760 - INFO - [loso_SA05]   Trainable params: 1.65M
 2025-12-12 13:21:54,764 - INFO - [loso_SA05] Using weighted CrossEntropyLoss based on training data balance.
@@ -2050,7 +2050,7 @@
 2025-12-12 13:54:06,273 - DEBUG - Manual metrics - Acc: 0.9939, Macro F1: 0.9937, Fall F1: 0.9927
 2025-12-12 13:54:06,281 - INFO - [loso_SA05] Seed 123 Test Results: {'accuracy': 0.9939159292035398, 'specificity': 0.9924385633270313, 'fall_f1': 0.9926910298998308, 'sensitivity': 0.9959999999999987, 'macro_f1': 0.9937401146654394, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9942176869648426, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 13:54:06,295 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA05.csv
-2025-12-12 13:55:05,515 - INFO - [loso_SA06] Model: amsv2
+2025-12-12 13:55:05,515 - INFO - [loso_SA06] Model: phycl_net
 2025-12-12 13:55:05,515 - INFO - [loso_SA06]   Total params: 1.65M
 2025-12-12 13:55:05,515 - INFO - [loso_SA06]   Trainable params: 1.65M
 2025-12-12 13:55:05,519 - INFO - [loso_SA06] Using weighted CrossEntropyLoss based on training data balance.
@@ -2130,7 +2130,7 @@
 2025-12-12 14:27:11,111 - DEBUG - Manual metrics - Acc: 0.9923, Macro F1: 0.9920, Fall F1: 0.9906
 2025-12-12 14:27:11,119 - INFO - [loso_SA06] Seed 123 Test Results: {'accuracy': 0.9922566371681416, 'specificity': 0.9971644612476362, 'fall_f1': 0.9906166219834128, 'sensitivity': 0.985333333333332, 'macro_f1': 0.9920126424415502, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9912312457154837, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 14:27:11,133 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA06.csv
-2025-12-12 14:28:10,120 - INFO - [loso_SA09] Model: amsv2
+2025-12-12 14:28:10,120 - INFO - [loso_SA09] Model: phycl_net
 2025-12-12 14:28:10,120 - INFO - [loso_SA09]   Total params: 1.65M
 2025-12-12 14:28:10,120 - INFO - [loso_SA09]   Trainable params: 1.65M
 2025-12-12 14:28:10,124 - INFO - [loso_SA09] Using weighted CrossEntropyLoss based on training data balance.
@@ -2234,7 +2234,7 @@
 2025-12-12 15:08:37,447 - DEBUG - Manual metrics - Acc: 0.9939, Macro F1: 0.9937, Fall F1: 0.9926
 2025-12-12 15:08:37,452 - INFO - [loso_SA09] Seed 123 Test Results: {'accuracy': 0.9939159292035398, 'specificity': 0.9990548204158781, 'fall_f1': 0.9926224010726039, 'sensitivity': 0.9866666666666654, 'macro_f1': 0.9937229652419339, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9928414221198663, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 15:08:37,462 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA09.csv
-2025-12-12 15:09:36,972 - INFO - [loso_SA10] Model: amsv2
+2025-12-12 15:09:36,972 - INFO - [loso_SA10] Model: phycl_net
 2025-12-12 15:09:36,972 - INFO - [loso_SA10]   Total params: 1.65M
 2025-12-12 15:09:36,972 - INFO - [loso_SA10]   Trainable params: 1.65M
 2025-12-12 15:09:36,976 - INFO - [loso_SA10] Using weighted CrossEntropyLoss based on training data balance.
@@ -2318,7 +2318,7 @@
 2025-12-12 15:44:25,486 - DEBUG - Manual metrics - Acc: 0.9950, Macro F1: 0.9949, Fall F1: 0.9940
 2025-12-12 15:44:25,491 - INFO - [loso_SA10] Seed 123 Test Results: {'accuracy': 0.9950221238938053, 'specificity': 0.9952741020793943, 'fall_f1': 0.9940039973346084, 'sensitivity': 0.9946666666666653, 'macro_f1': 0.9948743390925857, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9949703380176563, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 15:44:25,499 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA10.csv
-2025-12-12 15:45:41,788 - INFO - [loso_SA11] Model: amsv2
+2025-12-12 15:45:41,788 - INFO - [loso_SA11] Model: phycl_net
 2025-12-12 15:45:41,789 - INFO - [loso_SA11]   Total params: 1.65M
 2025-12-12 15:45:41,789 - INFO - [loso_SA11]   Trainable params: 1.65M
 2025-12-12 15:45:41,792 - INFO - [loso_SA11] Using weighted CrossEntropyLoss based on training data balance.
@@ -2414,7 +2414,7 @@
 2025-12-12 16:24:21,866 - DEBUG - Manual metrics - Acc: 0.9425, Macro F1: 0.9407, Fall F1: 0.9305
 2025-12-12 16:24:21,874 - INFO - [loso_SA11] Seed 123 Test Results: {'accuracy': 0.9424778761061947, 'specificity': 0.9527410207939501, 'fall_f1': 0.9304812834219586, 'sensitivity': 0.9279999999999987, 'macro_f1': 0.9407123398239364, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9402891402631344, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 16:24:21,886 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA11.csv
-2025-12-12 16:25:20,620 - INFO - [loso_SA17] Model: amsv2
+2025-12-12 16:25:20,620 - INFO - [loso_SA17] Model: phycl_net
 2025-12-12 16:25:20,620 - INFO - [loso_SA17]   Total params: 1.65M
 2025-12-12 16:25:20,620 - INFO - [loso_SA17]   Trainable params: 1.65M
 2025-12-12 16:25:20,624 - INFO - [loso_SA17] Using weighted CrossEntropyLoss based on training data balance.
@@ -2522,7 +2522,7 @@
 2025-12-12 17:09:58,071 - DEBUG - Manual metrics - Acc: 0.9877, Macro F1: 0.9873, Fall F1: 0.9852
 2025-12-12 17:09:58,079 - INFO - [loso_SA17] Seed 123 Test Results: {'accuracy': 0.9877094972067039, 'specificity': 0.9951923076923068, 'fall_f1': 0.9852150537629394, 'sensitivity': 0.977333333333332, 'macro_f1': 0.9873494006861906, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9862223965133895, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 17:09:58,087 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA17.csv
-2025-12-12 17:10:57,718 - INFO - [loso_SA18] Model: amsv2
+2025-12-12 17:10:57,718 - INFO - [loso_SA18] Model: phycl_net
 2025-12-12 17:10:57,719 - INFO - [loso_SA18]   Total params: 1.65M
 2025-12-12 17:10:57,719 - INFO - [loso_SA18]   Trainable params: 1.65M
 2025-12-12 17:10:57,722 - INFO - [loso_SA18] Using weighted CrossEntropyLoss based on training data balance.
@@ -2590,7 +2590,7 @@
 2025-12-12 17:37:33,806 - DEBUG - Manual metrics - Acc: 0.9939, Macro F1: 0.9937, Fall F1: 0.9926
 2025-12-12 17:37:33,811 - INFO - [loso_SA18] Seed 123 Test Results: {'accuracy': 0.9939159292035398, 'specificity': 0.9971644612476362, 'fall_f1': 0.992642140467726, 'sensitivity': 0.989333333333332, 'macro_f1': 0.9937279537791099, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.9932411793354422, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 17:37:33,819 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA18.csv
-2025-12-12 17:38:35,786 - INFO - [loso_SA19] Model: amsv2
+2025-12-12 17:38:35,786 - INFO - [loso_SA19] Model: phycl_net
 2025-12-12 17:38:35,786 - INFO - [loso_SA19]   Total params: 1.65M
 2025-12-12 17:38:35,786 - INFO - [loso_SA19]   Trainable params: 1.65M
 2025-12-12 17:38:35,790 - INFO - [loso_SA19] Using weighted CrossEntropyLoss based on training data balance.
@@ -2650,7 +2650,7 @@
 2025-12-12 18:00:40,158 - DEBUG - Manual metrics - Acc: 0.9840, Macro F1: 0.9836, Fall F1: 0.9810
 2025-12-12 18:00:40,166 - INFO - [loso_SA19] Seed 123 Test Results: {'accuracy': 0.9839601769911505, 'specificity': 0.9744801512287327, 'fall_f1': 0.9809836065568758, 'sensitivity': 0.997333333333332, 'macro_f1': 0.9835573221686705, 'roc_auc': nan, 'pr_auc': nan, 'g_mean': 0.985840523356654, 'detection_latency_ms': 0.0, 'detection_latency_median_ms': 0.0, 'detection_latency_std_ms': 0.0, 'detection_latency_min_ms': 0.0, 'detection_latency_max_ms': 0.0, 'detection_rate': 1.0, 'detection_total_falls': 1, 'detection_detected_falls': 1}
 2025-12-12 18:00:40,179 - INFO - Saved error analysis to ./outputs/ablation_no_faa\errors_seed123_loso_SA19.csv
-2025-12-12 18:01:41,546 - INFO - [loso_SA21] Model: amsv2
+2025-12-12 18:01:41,546 - INFO - [loso_SA21] Model: phycl_net
 2025-12-12 18:01:41,546 - INFO - [loso_SA21]   Total params: 1.65M
 2025-12-12 18:01:41,546 - INFO - [loso_SA21]   Trainable params: 1.65M
 2025-12-12 18:01:41,550 - INFO - [loso_SA21] Using weighted CrossEntropyLoss based on training data balance.

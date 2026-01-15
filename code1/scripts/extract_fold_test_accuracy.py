@@ -304,8 +304,8 @@ def classify_model_from_observations(
     if model_name in {"mspa_faa_pdk", "mspa-faa-pdk"}:
         return MODEL_MSPA
 
-    # PhyCL-Net can appear as "amsv2" in some logs; use the MSPA ablation flag if present.
-    if model_name in {"phycl_net", "amsv2", "lite-amsnet", "lite_amsnet", "liteamsnet", "amsnet"} or "amsv2" in path_l:
+    # PhyCL-Net variants; use the MSPA ablation flag if present.
+    if model_name in {"phycl_net", "lite-amsnet", "lite_amsnet", "liteamsnet", "amsnet"}:
         if mspa_enabled is True:
             return MODEL_MSPA
         if mspa_enabled is False:

@@ -1,7 +1,7 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `code1/`: training entry (`phycl_net_experiments.py`), model blocks in `models/`, losses in `losses/`, utilities in `scripts/`.
+- `code1/`: training entry (`PhyCL-Net_experiments.py`; wrapper `phycl_net_experiments.py`), model blocks in `models/`, losses in `losses/`, utilities in `scripts/`.
 - `data/`: local SisFall/KFall/UniMiB_SHAR/MobiFall datasets; treat as read-only and exclude from commits.
 - `outputs/`, `figures/`: checkpoints, metrics, plots from runs; clean or redirect when starting new sweeps.
 - `docs/`: training summary, reproducibility manifest, submission checklist, experiment log; `automation/` queue helpers.
@@ -10,8 +10,8 @@
 
 ## Build, Test, and Development Commands
 - Setup: `python -m venv .venv && .\\.venv\\Scripts\\activate && pip install -r requirements.txt`.
-- Smoke check: `python code1/phycl_net_experiments.py --dataset dryrun --epochs 2 --batch-size 4 --profile` (fast env validation).
-- Full SisFall: `python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 50 --batch-size 256 --lr 0.004 --warmup-epochs 10 --weighted-loss --amp --use-tfcl`.
+- Smoke check: `python code1/PhyCL-Net_experiments.py --dataset dryrun --epochs 2 --batch-size 4 --profile` (fast env validation).
+- Full SisFall: `python code1/PhyCL-Net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 50 --batch-size 256 --lr 0.004 --warmup-epochs 10 --weighted-loss --amp --use-tfcl`.
 - Baselines: `python code1/scripts/train_baselines.py --data-root ./data --epochs 50`.
 - Noise robustness: `python code1/scripts/eval_noise_robustness.py --ckpt outputs/phycl_net/ckpt_best_seed456_loso_SA01.pth --data-root ./data --figure-dir ./figures/demo`.
 - Submission bundle: `python code1/scripts/pack_sci_submission.py --output-dir ./submission_package --include-checkpoints`.
@@ -61,7 +61,7 @@
 ### 执行本项目脚本
 - Run training with GPU:
   ```bash
-  python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 50 --batch-size 256 --lr 0.004 --warmup-epochs 10 --weighted-loss --amp --use-tfcl
+  python code1/PhyCL-Net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 50 --batch-size 256 --lr 0.004 --warmup-epochs 10 --weighted-loss --amp --use-tfcl
   ```
 - Run analysis scripts:
   ```bash
