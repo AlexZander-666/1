@@ -1,7 +1,7 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `code/`: AMSNetV2 training entry (`DMC_Net_experiments.py`), model blocks in `models/`, losses in `losses/`, utilities in `scripts/`.
+- `code1/`: training entry (`phycl_net_experiments.py`), model blocks in `models/`, losses in `losses/`, utilities in `scripts/`.
 - `data/`: local SisFall/KFall/UniMiB_SHAR/MobiFall datasets; treat as read-only and exclude from commits.
 - `outputs/`, `figures/`: checkpoints, metrics, plots from runs; clean or redirect when starting new sweeps.
 - `docs/`: training summary, reproducibility manifest, submission checklist, experiment log; `automation/` queue helpers.
@@ -10,10 +10,10 @@
 
 ## Build, Test, and Development Commands
 - Setup: `python -m venv .venv && .\\.venv\\Scripts\\activate && pip install -r requirements.txt`.
-- Smoke check: `python code/DMC_Net_experiments.py --dataset dryrun --epochs 2 --batch-size 4 --profile` (fast env validation).
-- Full SisFall: `python code/DMC_Net_experiments.py --dataset sisfall --data-root ./data --model dmc --epochs 100 --weighted-loss --amp --seed 42`.
-- Baselines: `python code/scripts/train_baselines.py --data-root ./data --epochs 50`.
-- Noise robustness: `python code/scripts/eval_noise_robustness.py --ckpt outputs/ablation_no_mspa_old_bs32/ckpt_best_seed42_loso_SA01.pth --data-root ./data --figure-dir ./figures/demo`.
+- Smoke check: `python code1/phycl_net_experiments.py --dataset dryrun --epochs 2 --batch-size 4 --profile` (fast env validation).
+- Full SisFall: `python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 100 --weighted-loss --amp`.
+- Baselines: `python code1/scripts/train_baselines.py --data-root ./data --epochs 50`.
+- Noise robustness: `python code1/scripts/eval_noise_robustness.py --ckpt outputs/ablation_no_mspa_old_bs32/ckpt_best_seed42_loso_SA01.pth --data-root ./data --figure-dir ./figures/demo`.
 - Submission bundle: `python code/scripts/pack_sci_submission.py --output-dir ./submission_package --include-checkpoints`.
 - MCP server: `(cd tools/paper-search-mcp && uv run pytest && uv run -m paper_search_mcp.server)`.
 
@@ -61,7 +61,7 @@
 ### 执行本项目脚本
 - Run training with GPU:
   ```bash
-  python code/DMC_Net_experiments.py --dataset sisfall --data-root ./data --model dmc --epochs 100 --weighted-loss --amp --seed 42
+  python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 100 --weighted-loss --amp
   ```
 - Run analysis scripts:
   ```bash
@@ -74,5 +74,5 @@
   ```
 - Run noise robustness evaluation:
   ```bash
-  python code/scripts/eval_noise_robustness.py --ckpt outputs/ablation_no_mspa_old_bs32/ckpt_best_seed42_loso_SA01.pth --data-root ./data --figure-dir ./figures/demo
+  python code1/scripts/eval_noise_robustness.py --ckpt outputs/ablation_no_mspa_old_bs32/ckpt_best_seed42_loso_SA01.pth --data-root ./data --figure-dir ./figures/demo
   ```

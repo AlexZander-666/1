@@ -1,7 +1,7 @@
 """
-DMC_Net_optimized.py (PubMate Final Polish)
+PhyCL-Net experiments
 
-此脚本实现了 AMS-Net (Adaptive Multi-Scale Sensing Network) 的训练与评估流程。
+此脚本实现了 PhyCL-Net（论文 `paper/jec/last2.tex`）及相关基线的训练与评估流程。
 针对 SCI 投稿要求进行了严格的工程化修复和增强。
 
 主要修复 (Fixes & Optimizations):
@@ -14,13 +14,18 @@ DMC_Net_optimized.py (PubMate Final Polish)
 
 Usage:
     # 快速验证 (Dry Run)
-    python DMC_Net_optimized.py --dataset dryrun --profile --epochs 2 --batch-size 4
+    python code1/phycl_net_experiments.py --dataset dryrun --profile --epochs 2 --batch-size 4
 
-    # 真实实验 (SisFall) - 训练
-    python DMC_Net_optimized.py --dataset sisfall --data-root ./data --model dmc --batch-size 16 --epochs 100 --weighted-loss --amp
+    # 真实实验 (SisFall LOSO) - 主模型 PhyCL-Net（time-domain，强制 no-MSPA）
+    python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --eval-mode loso --seeds 42 --epochs 100 --weighted-loss --amp
 
     # 真实实验 - 断点续训
-    python DMC_Net_optimized.py --dataset sisfall --data-root ./data --model dmc --resume ./outputs/ckpt_last_seed42.pth
+    python code1/phycl_net_experiments.py --dataset sisfall --data-root ./data --model phycl_net --resume ./outputs/ckpt_last_seed42.pth
+
+Model naming notes:
+    - --model phycl_net: 论文中的 PhyCL-Net（no-MSPA；`mspa=False` 会被强制写入 ablation 配置）
+    - --model amsv2: 通用 AMSNetV2（可通过 `--ablation mspa:True/False` 切换频谱分支）
+    - --model dmc: DMCNet 基线（默认包含频谱/频域分支；同样可用 `--ablation mspa:False` 关闭）
 """
 
 import os
